@@ -78,6 +78,8 @@ public class Settings extends SherlockPreferenceActivity implements
 		} else if (preferenceKey.equals("rateThisApp")) {
 			uri = Uri.parse("https://play.google.com/store/apps/details?id="
 					+ getPackageName());
+		} else if (preferenceKey.equals("viewSourceCode")) {
+			uri = Uri.parse("https://github.com/intrications/intent-intercept");
 		} else if (preferenceKey.equals("licence")) {
 			uri = Uri.parse("http://www.apache.org/licenses/LICENSE-2.0.html");
 		}

@@ -6,13 +6,17 @@
         android:title="Rate This App" />
     <Preference
         android:key="viewMyOtherApps"
-        android:title="View Intrications' other apps" />
+        android:title="View Intrications&apos; other apps" />
     <Preference
         android:key="visitWebsite"
         android:title="Visit intrications.com" />
     <Preference
         android:key="visitGooglePlus"
         android:title="Visit Intrications on Google+" />
+    <Preference
+        android:key="viewSourceCode"
+        android:summary="View Intent Intercept source code on github"
+        android:title="View Source Code" />
     <Preference
         android:key="licence"
         android:summary="Apache License, Version 2.0"

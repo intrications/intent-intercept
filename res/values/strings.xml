@@ -7,6 +7,6 @@
     <string name="share_intent_details">Share Intent Details</string>
     <string name="copy">Copy</string>
     <string name="app_name">Intent Intercept</string>
-    <string name="enable_intent_intercept">Enable Intent Intercept</string>
+    <string name="enable_intent_intercept">Enable interception</string>
 
 </resources>
