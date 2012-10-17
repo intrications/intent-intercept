@@ -8,23 +8,53 @@
 
     <Preference
         android:key="rateThisApp"
-        android:title="Rate This App" />
+        android:title="Rate This App" >
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://play.google.com/store/apps/details?id=uk.co.ashtonbrsc.intentexplode" >
+        </intent>
+    </Preference>
     <Preference
         android:key="viewMyOtherApps"
-        android:title="View Intrications&apos; other apps" />
+        android:title="View Intrications&apos; other apps" >
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://play.google.com/store/apps/developer?id=Intrications" >
+        </intent>
+    </Preference>
     <Preference
         android:key="visitWebsite"
-        android:title="Visit intrications.com" />
+        android:title="Visit intrications.com" >
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="http://www.intrications.com" >
+        </intent>
+    </Preference>
     <Preference
         android:key="visitGooglePlus"
-        android:title="Visit Intrications on Google+" />
+        android:title="Visit Intrications on Google+" >
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://plus.google.com/114248840147347624819/posts" >
+        </intent>
+    </Preference>
     <Preference
         android:key="viewSourceCode"
         android:summary="View Intent Intercept source code on github"
-        android:title="View Source Code" />
+        android:title="View Source Code" >
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/intrications/intent-intercept" >
+        </intent>
+    </Preference>
     <Preference
         android:key="licence"
         android:summary="Apache License, Version 2.0"
-        android:title="Licence" />
+        android:title="Licence" >
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="http://www.apache.org/licenses/LICENSE-2.0.html" >
+        </intent>
+    </Preference>
 
 </PreferenceScreen>

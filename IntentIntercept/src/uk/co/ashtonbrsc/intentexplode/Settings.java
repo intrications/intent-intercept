@@ -27,11 +27,12 @@ import android.preference.Preference.OnPreferenceClickListener;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 
 public class Settings extends SherlockPreferenceActivity implements
-		OnPreferenceChangeListener, OnPreferenceClickListener {
+		OnPreferenceChangeListener {
 
 	private static final CharSequence INTERCEPT_ENABLED = "interceptEnabled";
 	private Preference interceptEnabledPreference;
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,11 +42,6 @@ public class Settings extends SherlockPreferenceActivity implements
 		interceptEnabledPreference = findPreference(INTERCEPT_ENABLED);
 
 		interceptEnabledPreference.setOnPreferenceChangeListener(this);
-
-		for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++) {
-			getPreferenceScreen().getPreference(i)
-					.setOnPreferenceClickListener(this);
-		}
 
 	}
 
@@ -62,31 +58,6 @@ public class Settings extends SherlockPreferenceActivity implements
 					PackageManager.DONT_KILL_APP);
 		}
 		return true;
-	}
-
-	public boolean onPreferenceClick(Preference preference) {
-		Uri uri = null;
-		String preferenceKey = preference.getKey();
-		if (preferenceKey.equals("visitGooglePlus")) {
-			uri = Uri
-					.parse("https://plus.google.com/114248840147347624819/posts");
-		} else if (preferenceKey.equals("visitWebsite")) {
-			uri = Uri.parse("http://www.intrications.com");
-		} else if (preferenceKey.equals("viewMyOtherApps")) {
-			uri = Uri.parse("https://play.google.com/store/apps/developer?id=Intrications");
-		} else if (preferenceKey.equals("rateThisApp")) {
-			uri = Uri.parse("https://play.google.com/store/apps/details?id="
-					+ getPackageName());
-		} else if (preferenceKey.equals("viewSourceCode")) {
-			uri = Uri.parse("https://github.com/intrications/intent-intercept");
-		} else if (preferenceKey.equals("licence")) {
-			uri = Uri.parse("http://www.apache.org/licenses/LICENSE-2.0.html");
-		} else {
-			return false;
-		}
-
-		startActivity(new Intent(Intent.ACTION_VIEW, uri));
-		return false;
 	}
 
 }
