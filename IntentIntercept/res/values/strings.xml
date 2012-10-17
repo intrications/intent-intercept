@@ -2,6 +2,7 @@
 <resources>
 
     <string name="resend_intent">Resend Intent</string>
+    <string name="reset_intent">Reset Intent</string>
     <string name="share">Share</string>
     <string name="intent_details_copied_to_clipboard">Intent details copied to clipboard.</string>
     <string name="share_intent_details">Share Intent Details</string>

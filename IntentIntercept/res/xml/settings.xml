@@ -11,7 +11,7 @@
         android:title="Rate This App" >
         <intent
             android:action="android.intent.action.VIEW"
-            android:data="https://play.google.com/store/apps/details?id=uk.co.ashtonbrsc.intentexplode" >
+            android:data="https://play.google.com/store/apps/details?id=uk.co.ashtonbrsc.android.intentintercept" >
         </intent>
     </Preference>
     <Preference
