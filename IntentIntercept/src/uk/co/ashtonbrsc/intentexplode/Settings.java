@@ -37,7 +37,6 @@ public class Settings extends SherlockPreferenceActivity implements
 		super.onCreate(savedInstanceState);
 
 		addPreferencesFromResource(R.xml.settings);
-		addPreferencesFromResource(R.xml.more_settings);
 
 		interceptEnabledPreference = findPreference(INTERCEPT_ENABLED);
 
@@ -82,6 +81,8 @@ public class Settings extends SherlockPreferenceActivity implements
 			uri = Uri.parse("https://github.com/intrications/intent-intercept");
 		} else if (preferenceKey.equals("licence")) {
 			uri = Uri.parse("http://www.apache.org/licenses/LICENSE-2.0.html");
+		} else {
+			return false;
 		}
 
 		startActivity(new Intent(Intent.ACTION_VIEW, uri));
