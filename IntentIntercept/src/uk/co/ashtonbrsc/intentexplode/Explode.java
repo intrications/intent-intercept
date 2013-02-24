@@ -197,41 +197,46 @@ public class Explode extends SherlockActivity {
 		} else {
 			addTextToLayout("NONE", Typeface.NORMAL, flagsLayout);
 		}
-		Bundle intentBundle = editableIntent.getExtras();
-		if (intentBundle != null) {
-			Set<String> keySet = intentBundle.keySet();
-			stringBuilder.append("<br><b><u>Bundle:</u></b><br>");
-			int count = 0;
+		try {
+			Bundle intentBundle = editableIntent.getExtras();
+			if (intentBundle != null) {
+				Set<String> keySet = intentBundle.keySet();
+				stringBuilder.append("<br><b><u>Bundle:</u></b><br>");
+				int count = 0;
 
-			for (String key : keySet) {
-				count++;
-				Object thisObject = intentBundle.get(key);
-				addTextToLayout("EXTRA " + count, Typeface.BOLD, extrasLayout);
-				String thisClass = thisObject.getClass().getName();
-				if (thisClass != null) {
-					addTextToLayout("Class: " + thisClass, Typeface.ITALIC,
+				for (String key : keySet) {
+					count++;
+					Object thisObject = intentBundle.get(key);
+					addTextToLayout("EXTRA " + count, Typeface.BOLD, extrasLayout);
+					String thisClass = thisObject.getClass().getName();
+					if (thisClass != null) {
+						addTextToLayout("Class: " + thisClass, Typeface.ITALIC,
+								STANDARD_INDENT_SIZE_IN_DIP, extrasLayout);
+					}
+					addTextToLayout("Key: " + key, Typeface.ITALIC,
 							STANDARD_INDENT_SIZE_IN_DIP, extrasLayout);
-				}
-				addTextToLayout("Key: " + key, Typeface.ITALIC,
-						STANDARD_INDENT_SIZE_IN_DIP, extrasLayout);
-				if (thisObject instanceof String || thisObject instanceof Long
-						|| thisObject instanceof Integer
-						|| thisObject instanceof Boolean) {
-					addTextToLayout("Value: " + thisObject.toString(),
-							Typeface.ITALIC, STANDARD_INDENT_SIZE_IN_DIP,
-							extrasLayout);
-				} else if (thisObject instanceof java.util.ArrayList) {
-					addTextToLayout("Values: ", Typeface.ITALIC, extrasLayout);
-					ArrayList thisArrayList = (ArrayList) thisObject;
-					for (Object thisArrayListObject : thisArrayList) {
-						addTextToLayout(thisArrayListObject.toString(),
+					if (thisObject instanceof String || thisObject instanceof Long
+							|| thisObject instanceof Integer
+							|| thisObject instanceof Boolean) {
+						addTextToLayout("Value: " + thisObject.toString(),
 								Typeface.ITALIC, STANDARD_INDENT_SIZE_IN_DIP,
 								extrasLayout);
+					} else if (thisObject instanceof java.util.ArrayList) {
+						addTextToLayout("Values: ", Typeface.ITALIC, extrasLayout);
+						ArrayList thisArrayList = (ArrayList) thisObject;
+						for (Object thisArrayListObject : thisArrayList) {
+							addTextToLayout(thisArrayListObject.toString(),
+									Typeface.ITALIC, STANDARD_INDENT_SIZE_IN_DIP,
+									extrasLayout);
+						}
 					}
 				}
+			} else {
+				addTextToLayout("NONE", Typeface.NORMAL, extrasLayout);
 			}
-		} else {
-			addTextToLayout("NONE", Typeface.NORMAL, extrasLayout);
+		} catch (Exception e) {
+			addTextToLayout("ERROR EXTRACTING EXTRAS", Typeface.NORMAL, extrasLayout);
+			e.printStackTrace();
 		}
 
 		checkAndShowMatchingActivites();
@@ -496,38 +501,44 @@ public class Explode extends SherlockActivity {
 			stringBuilder.append("NONE").append("<br>");
 		}
 
-		Bundle intentBundle = editableIntent.getExtras();
-		if (intentBundle != null) {
-			Set<String> keySet = intentBundle.keySet();
-			stringBuilder.append("<br><b><u>BUNDLE:</u></b><br>");
-			int count = 0;
+		try {
+			Bundle intentBundle = editableIntent.getExtras();
+			if (intentBundle != null) {
+				Set<String> keySet = intentBundle.keySet();
+				stringBuilder.append("<br><b><u>EXTRAS:</u></b><br>");
+				int count = 0;
 
-			for (String key : keySet) {
-				count++;
-				Object thisObject = intentBundle.get(key);
-				stringBuilder.append("<u>EXTRA ").append(count)
-						.append(":</u><br>");
-				String thisClass = thisObject.getClass().getName();
-				if (thisClass != null) {
-					stringBuilder.append("Class: ").append(thisClass)
-							.append("<br>");
-				}
-				stringBuilder.append("Key: ").append(key).append("<br>");
+				for (String key : keySet) {
+					count++;
+					Object thisObject = intentBundle.get(key);
+					stringBuilder.append("<u>EXTRA ").append(count)
+							.append(":</u><br>");
+					String thisClass = thisObject.getClass().getName();
+					if (thisClass != null) {
+						stringBuilder.append("Class: ").append(thisClass)
+								.append("<br>");
+					}
+					stringBuilder.append("Key: ").append(key).append("<br>");
 
-				if (thisObject instanceof String || thisObject instanceof Long
-						|| thisObject instanceof Integer
-						|| thisObject instanceof Boolean) {
-					stringBuilder.append("Value: " + thisObject.toString())
-							.append("<br>");
-				} else if (thisObject instanceof java.util.ArrayList) {
-					stringBuilder.append("Values:<br>");
-					ArrayList thisArrayList = (ArrayList) thisObject;
-					for (Object thisArrayListObject : thisArrayList) {
-						stringBuilder.append(thisArrayListObject.toString()
-								+ "<br>");
+					if (thisObject instanceof String || thisObject instanceof Long
+							|| thisObject instanceof Integer
+							|| thisObject instanceof Boolean) {
+						stringBuilder.append("Value: " + thisObject.toString())
+								.append("<br>");
+					} else if (thisObject instanceof java.util.ArrayList) {
+						stringBuilder.append("Values:<br>");
+						ArrayList thisArrayList = (ArrayList) thisObject;
+						for (Object thisArrayListObject : thisArrayList) {
+							stringBuilder.append(thisArrayListObject.toString()
+									+ "<br>");
+						}
 					}
 				}
 			}
+		} catch (Exception e) {
+			stringBuilder.append("<br><b><u>BUNDLE:</u></b><br>");
+			stringBuilder.append("<font color=\"red\">Error extracting extras<br><font>");
+			e.printStackTrace();
 		}
 
 		PackageManager pm = getPackageManager();
