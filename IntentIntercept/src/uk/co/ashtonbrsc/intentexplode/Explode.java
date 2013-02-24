@@ -235,6 +235,7 @@ public class Explode extends SherlockActivity {
 				addTextToLayout("NONE", Typeface.NORMAL, extrasLayout);
 			}
 		} catch (Exception e) {
+			// TODO Should make this red to highlight error
 			addTextToLayout("ERROR EXTRACTING EXTRAS", Typeface.NORMAL, extrasLayout);
 			e.printStackTrace();
 		}
