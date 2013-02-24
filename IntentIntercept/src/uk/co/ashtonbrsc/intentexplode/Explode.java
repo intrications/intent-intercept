@@ -297,7 +297,7 @@ public class Explode extends SherlockActivity {
 		}
 	}
 
-	private void addTextToLayout(String text, int textStyle, int paddingLeft,
+	private void addTextToLayout(String text, int typeface, int paddingLeft,
 			LinearLayout layout) {
 		TextView textView = new TextView(this);
 		ParagraphStyle style_para = new LeadingMarginSpan.Standard(0,
@@ -307,15 +307,15 @@ public class Explode extends SherlockActivity {
 				Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 		textView.setText(styledText);
 		textView.setTextAppearance(this, R.style.TextFlags);
-		textView.setTypeface(null, textStyle);
+		textView.setTypeface(null, typeface);
 		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT,
 				LayoutParams.WRAP_CONTENT);
 		params.setMargins((int) (paddingLeft * density), 0, 0, 0);
 		layout.addView(textView, params);
 	}
 
-	private void addTextToLayout(String text, int textStyle, LinearLayout layout) {
-		addTextToLayout(text, textStyle, 0, layout);
+	private void addTextToLayout(String text, int typeface, LinearLayout layout) {
+		addTextToLayout(text, typeface, 0, layout);
 	}
 
 	private void setupVariables() {
