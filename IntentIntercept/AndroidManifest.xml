@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uk.co.ashtonbrsc.android.intentintercept"
-    android:versionCode="101"
-    android:versionName="2.01" >
+    android:versionCode="102"
+    android:versionName="2.02" >
 
     <uses-sdk
         android:minSdkVersion="7"
-        android:targetSdkVersion="15" />
+        android:targetSdkVersion="19" />
 
     <uses-feature
         android:name="android.hardware.touchscreen"

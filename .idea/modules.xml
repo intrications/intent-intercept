@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/contrib/ActionBarSherlock/ActionBarSherlock.iml" filepath="$PROJECT_DIR$/contrib/ActionBarSherlock/ActionBarSherlock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IntentIntercept/IntentIntercept.iml" filepath="$PROJECT_DIR$/IntentIntercept/IntentIntercept.iml" />
+      <module fileurl="file://$PROJECT_DIR$/contrib/android-switch-backport/android-switch-backport.iml" filepath="$PROJECT_DIR$/contrib/android-switch-backport/android-switch-backport.iml" />
+      <module fileurl="file://$PROJECT_DIR$/contrib/contrib.iml" filepath="$PROJECT_DIR$/contrib/contrib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/intent-intercept.iml" filepath="$PROJECT_DIR$/intent-intercept.iml" />
+      <module fileurl="file://$PROJECT_DIR$/contrib/ActionBarSherlock/library/library.iml" filepath="$PROJECT_DIR$/contrib/ActionBarSherlock/library/library.iml" />
+    </modules>
+  </component>
+</project>
+
