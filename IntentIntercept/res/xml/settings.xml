@@ -3,9 +3,18 @@
 
     <org.jraf.android.backport.switchwidget.SwitchPreference
         android:defaultValue="true"
-        android:key="interceptEnabled"
+        android:key="@string/intercept_enable_pref"
         android:title="@string/enable_intent_intercept" />
 
+    <Preference
+        android:key="@string/send_test_intent_pref"
+        android:title="Send Test Intent"
+        android:summary="Tap this then select Intent Intercept from list">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="Test Data" >
+        </intent>
+    </Preference>
     <Preference
         android:key="rateThisApp"
         android:title="Rate This App" >

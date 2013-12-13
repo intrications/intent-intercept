@@ -14,20 +14,22 @@
 
 package uk.co.ashtonbrsc.intentexplode;
 
-import uk.co.ashtonbrsc.android.intentintercept.R;
 import android.content.ComponentName;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
+import android.support.v4.app.ShareCompat;
 
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
+
+import uk.co.ashtonbrsc.android.intentintercept.R;
 
 public class Settings extends SherlockPreferenceActivity implements
 		OnPreferenceChangeListener {
 
-	private static final CharSequence INTERCEPT_ENABLED = "interceptEnabled";
-	private Preference interceptEnabledPreference;
+    private Preference interceptEnabledPreference;
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -36,9 +38,21 @@ public class Settings extends SherlockPreferenceActivity implements
 
 		addPreferencesFromResource(R.xml.settings);
 
-		interceptEnabledPreference = findPreference(INTERCEPT_ENABLED);
+		interceptEnabledPreference = findPreference(getString(R.string.intercept_enable_pref));
 
 		interceptEnabledPreference.setOnPreferenceChangeListener(this);
+
+        Preference sendTestIntentPreference = findPreference(getString(R.string.send_test_intent_pref));
+        sendTestIntentPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent intent = ShareCompat.IntentBuilder.from(Settings.this).setChooserTitle
+                        ("Select Intent Intercept").setType("plain/text")
+                        .setText("Test Intent").createChooserIntent();
+                startActivity(intent);
+                return true;
+            }
+        });
 
 	}
 

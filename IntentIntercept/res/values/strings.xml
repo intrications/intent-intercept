@@ -9,5 +9,7 @@
     <string name="copy">Copy</string>
     <string name="app_name">Intent Intercept</string>
     <string name="enable_intent_intercept">Enable interception</string>
+    <string name="send_test_intent_pref">sendTestIntent</string>
+    <string name="intercept_enable_pref">interceptEnabled</string>
 
 </resources>
