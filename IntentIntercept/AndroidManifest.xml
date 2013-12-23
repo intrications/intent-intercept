@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uk.co.ashtonbrsc.android.intentintercept"
-    android:versionCode="102"
-    android:versionName="2.0.2" >
+    android:versionCode="103"
+    android:versionName="2.0.3" >
 
     <uses-sdk
         android:minSdkVersion="7"
@@ -44,6 +44,7 @@
                 <data android:scheme="about" />
                 <data android:scheme="javascript" />
                 <data android:scheme="mailto" />
+                <data android:scheme="geo" />
                 <!-- <data android:scheme="" /> -->
             </intent-filter>
             <intent-filter>
