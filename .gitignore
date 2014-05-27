@@ -30,3 +30,6 @@ out/
 # Gradle
 build/
 .gradle
+
+# OS X
+.DS_Store

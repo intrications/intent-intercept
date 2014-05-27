@@ -1,3 +1,1 @@
-include ':contrib:ActionBarSherlock:library'
-include ':contrib:android-switch-backport'
-include ':IntentIntercept'
+include ':app'
