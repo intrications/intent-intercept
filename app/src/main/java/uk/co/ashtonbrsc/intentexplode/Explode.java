@@ -23,6 +23,8 @@ import android.content.pm.ResolveInfo;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.ShareActionProvider;
 import android.text.ClipboardManager;
 import android.text.Editable;
 import android.text.Html;
@@ -40,7 +42,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
-import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,7 +64,7 @@ public class Explode extends Activity {
 	private static final String INTENT_EDITED = "intent_edited";
 	private static final int STANDARD_INDENT_SIZE_IN_DIP = 10;
 	private String intentDetailsHtml;
-	private ShareActionProvider shareActionProvider;
+	private ShareActionProvider shareActionProvider; // api-14
 	private EditText action;
 	private EditText data;
 	private EditText type;
@@ -574,10 +575,17 @@ public class Explode extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.menu, menu);
 		MenuItem actionItem = menu.findItem(R.id.share);
-		shareActionProvider = (ShareActionProvider) actionItem
-				.getActionProvider();
-		shareActionProvider
-				.setShareHistoryFileName(ShareActionProvider.DEFAULT_SHARE_HISTORY_FILE_NAME);
+
+        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(actionItem);
+		// shareActionProvider = (ShareActionProvider) actionItem.getActionProvider(); // api-14
+
+        if (shareActionProvider == null) {
+            shareActionProvider = new ShareActionProvider(this);
+            MenuItemCompat.setActionProvider(actionItem, shareActionProvider);
+        }
+
+        shareActionProvider
+                    .setShareHistoryFileName(ShareActionProvider.DEFAULT_SHARE_HISTORY_FILE_NAME);
 		refreshUI();
 		return super.onCreateOptionsMenu(menu);
 	}
