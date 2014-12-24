@@ -32,3 +32,4 @@ build/
 
 # OS X
 .DS_Store
+/gradle-app.setting

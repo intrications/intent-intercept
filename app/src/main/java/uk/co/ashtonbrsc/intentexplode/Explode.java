@@ -24,6 +24,7 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.ShareActionProvider;
 import android.text.ClipboardManager;
 import android.text.Editable;
@@ -59,7 +60,7 @@ import uk.co.ashtonbrsc.android.intentintercept.R;
 //TODO add bitmaps/images (from intent extras?)
 //TODO add getCallingActivity() - will only give details for startActivityForResult();
 
-public class Explode extends Activity {
+public class Explode extends ActionBarActivity {
 
 	private static final String INTENT_EDITED = "intent_edited";
 	private static final int STANDARD_INDENT_SIZE_IN_DIP = 10;

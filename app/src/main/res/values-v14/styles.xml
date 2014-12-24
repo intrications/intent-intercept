@@ -2,19 +2,21 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar" />
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar" />
 
     <style name="TextHeader">
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@android:color/holo_blue_light</item>
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">2dp</item>
         <item name="android:paddingLeft">4dp</item>
         <item name="android:layout_marginTop">4dp</item>
         <item name="android:layout_marginBottom">4dp</item>
     </style>
-<!-- duplcated from v14\style.xml -->
+
     <style name="TextFlags">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@android:color/primary_text_light</item>
@@ -30,6 +32,5 @@
         <item name="android:paddingLeft">8dp</item>
         <item name="android:paddingRight">8dp</item>
     </style>
-
 
 </resources>
