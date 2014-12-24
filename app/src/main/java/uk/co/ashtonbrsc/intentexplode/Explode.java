@@ -14,7 +14,6 @@
 
 package uk.co.ashtonbrsc.intentexplode;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -46,6 +45,7 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -60,16 +60,20 @@ import uk.co.ashtonbrsc.android.intentintercept.R;
 //TODO add bitmaps/images (from intent extras?)
 //TODO add getCallingActivity() - will only give details for startActivityForResult();
 
+/**
+ * This is actually an IntentEditActivity
+ */
 public class Explode extends ActionBarActivity {
 
-	private static final String INTENT_EDITED = "intent_edited";
+    private static final String INTENT_EDITED = "intent_edited";
 	private static final int STANDARD_INDENT_SIZE_IN_DIP = 10;
-	private String intentDetailsHtml;
-	private ShareActionProvider shareActionProvider; // api-14
+    private static final String NEWLINE = "\n<br>";
+
+    private String intentDetailsHtml;
+	private ShareActionProvider shareActionProvider; // api-14 or compat
 	private EditText action;
 	private EditText data;
 	private EditText type;
-	private Intent editableIntent;
 	private TextView categoriesHeader;
 	private LinearLayout categoriesLayout;
 	private LinearLayout flagsLayout;
@@ -79,8 +83,14 @@ public class Explode extends ActionBarActivity {
 	private Button resendIntentButton;
 	private Button resetIntentButton;
 	private float density;
-	private Intent originalIntent;
-	protected boolean textWatchersActive;
+	private String originalIntent;
+    private Intent editableIntent;
+
+    // support for onActivityResult
+    private Integer lastResultCode = null;
+    private String lastResultIntent = null;
+
+    protected boolean textWatchersActive;
 
 	private static final Map<Integer, String> FLAGS_MAP = new HashMap<Integer, String>() {
 		{
@@ -142,32 +152,38 @@ public class Explode extends ActionBarActivity {
 		}
 	};
 
-	@Override
+    @Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		originalIntent = (Intent) getIntent().clone();
-
-		editableIntent = (Intent) getIntent().clone();
-
-		editableIntent.setComponent(null);
-
 		setContentView(R.layout.explode);
 
-		setupVariables();
+        originalIntent = getUri(getIntent());
 
-		setupTextWatchers();
-
-		showInitialIntentDetails();
-
-		if (savedInstanceState != null
-				&& savedInstanceState.getBoolean(INTENT_EDITED)) {
-			showResetIntentButton();
-		}
-
+        final boolean isVisible = savedInstanceState != null
+                && savedInstanceState.getBoolean(INTENT_EDITED);
+        showInitialIntent(isVisible);
 	}
 
-	private void showInitialIntentDetails() {
+    /**
+     * creates a clone of originalIntent and displays it for editing
+     * @param isVisible
+     */
+    private void showInitialIntent(boolean isVisible) {
+        editableIntent = cloneIntent(originalIntent);
+
+        editableIntent.setComponent(null);
+
+        setupVariables();
+
+        setupTextWatchers();
+
+        showIntentDetails();
+
+        showResetIntentButton(isVisible);
+    }
+
+    private void showIntentDetails() {
 
 		action.setText(editableIntent.getAction());
 		if (editableIntent.getDataString() != null) {
@@ -180,7 +196,7 @@ public class Explode extends ActionBarActivity {
 		if (categories != null) {
 			stringBuilder.append("Categories:");
 			for (String category : categories) {
-				stringBuilder.append(category).append("<br>");
+				stringBuilder.append(category).append(NEWLINE);
 				TextView text2 = new TextView(this);
 				text2.setText(category);
 				text2.setTextAppearance(this, R.style.TextFlags);
@@ -277,7 +293,7 @@ public class Explode extends ActionBarActivity {
 		activitiesLayout.removeAllViews();
 		PackageManager pm = getPackageManager();
 		List<ResolveInfo> resolveInfo = pm.queryIntentActivities(
-				editableIntent, 0);
+                editableIntent, 0);
 
 		// Remove Intent Intercept from matching activities
 		int numberOfMatchingActivities = resolveInfo.size() - 1;
@@ -348,7 +364,7 @@ public class Explode extends ActionBarActivity {
 				if (textWatchersActive) {
 					try {
 						editableIntent.setAction(action.getText().toString());
-						showResetIntentButton();
+						showResetIntentButton(true);
 						refreshUI();
 					} catch (Exception e) {
 						Toast.makeText(Explode.this, e.getMessage(),
@@ -380,7 +396,7 @@ public class Explode extends ActionBarActivity {
 						// so we save it
 						editableIntent.setData(Uri.parse(dataString));
 						type.setText(savedType); // and re-set it
-						showResetIntentButton();
+						showResetIntentButton(true);
 						refreshUI();
 					} catch (Exception e) {
 						Toast.makeText(Explode.this, e.getMessage(),
@@ -406,7 +422,7 @@ public class Explode extends ActionBarActivity {
 				if (textWatchersActive) {
 					try {
 						editableIntent.setType(type.getText().toString());
-						showResetIntentButton();
+						showResetIntentButton(true);
 						refreshUI();
 					} catch (Exception e) {
 						Toast.makeText(Explode.this, e.getMessage(),
@@ -427,14 +443,14 @@ public class Explode extends ActionBarActivity {
 		});
 	}
 
-	private void showResetIntentButton() {
+	private void showResetIntentButton(boolean visible) {
 		resendIntentButton.setText("Send Edited Intent");
-		resetIntentButton.setVisibility(View.VISIBLE);
+		resetIntentButton.setVisibility((visible) ? View.VISIBLE : View.GONE);
 	}
 
 	public void onSendIntent(View v) {
 		try {
-			startActivity(editableIntent);
+			startActivityForResult(Intent.createChooser(editableIntent,resendIntentButton.getText()), 1);
 		} catch (Exception e) {
 			Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
@@ -442,8 +458,11 @@ public class Explode extends ActionBarActivity {
 	}
 
 	public void onResetIntent(View v) {
-		startActivity(originalIntent);
-		finish();
+        // this would break onActivityResult
+		// startActivity(originalIntent); // reload this with original data
+		// finish();
+        showInitialIntent(false);
+        refreshUI();
 	}
 
 	public void copyIntentDetails() {
@@ -479,18 +498,33 @@ public class Explode extends ActionBarActivity {
 												// the details
 		StringBuilder stringBuilder = new StringBuilder();
 
-		stringBuilder.append("<b><u>ACTION:</u></b> ")
-				.append(editableIntent.getAction()).append("<br>");
+        // k3b so intent can be reloaded using
+        // Intent.parseUri("Intent:....", Intent.URI_INTENT_SCHEME)
+        stringBuilder.append(getUri(editableIntent)).append(NEWLINE);
+
+        // support for onActivityResult
+        if (this.lastResultCode != null) {
+            stringBuilder.append("Last result: ").append(this.lastResultCode.toString());
+
+            if (this.lastResultIntent != null) {
+                stringBuilder.append(" Data: ")
+                        .append(lastResultIntent);
+            }
+            stringBuilder.append(NEWLINE);
+        }
+
+        stringBuilder.append(NEWLINE).append("<b><u>ACTION:</u></b> ")
+				.append(editableIntent.getAction()).append(NEWLINE);
 		stringBuilder.append("<b><u>DATA:</u></b> ")
-				.append(editableIntent.getData()).append("<br>");
+				.append(editableIntent.getData()).append(NEWLINE);
 		stringBuilder.append("<b><u>TYPE:</u></b> ")
-				.append(editableIntent.getType()).append("<br>");
+				.append(editableIntent.getType()).append(NEWLINE);
 
 		Set<String> categories = editableIntent.getCategories();
 		if (categories != null) {
 			stringBuilder.append("<b><u>CATEGORIES:</u></b><br>");
 			for (String category : categories) {
-				stringBuilder.append(category).append("<br>");
+				stringBuilder.append(category).append(NEWLINE);
 			}
 		}
 
@@ -498,10 +532,10 @@ public class Explode extends ActionBarActivity {
 		ArrayList<String> flagsStrings = getFlags();
 		if (flagsStrings.size() > 0) {
 			for (String thisFlagString : flagsStrings) {
-				stringBuilder.append(thisFlagString).append("<br>");
+				stringBuilder.append(thisFlagString).append(NEWLINE);
 			}
 		} else {
-			stringBuilder.append("NONE").append("<br>");
+			stringBuilder.append("NONE").append(NEWLINE);
 		}
 
 		try {
@@ -519,21 +553,21 @@ public class Explode extends ActionBarActivity {
 					String thisClass = thisObject.getClass().getName();
 					if (thisClass != null) {
 						stringBuilder.append("Class: ").append(thisClass)
-								.append("<br>");
+								.append(NEWLINE);
 					}
-					stringBuilder.append("Key: ").append(key).append("<br>");
+					stringBuilder.append("Key: ").append(key).append(NEWLINE);
 
 					if (thisObject instanceof String || thisObject instanceof Long
 							|| thisObject instanceof Integer
 							|| thisObject instanceof Boolean) {
 						stringBuilder.append("Value: " + thisObject.toString())
-								.append("<br>");
+								.append(NEWLINE);
 					} else if (thisObject instanceof ArrayList) {
 						stringBuilder.append("Values:<br>");
 						ArrayList thisArrayList = (ArrayList) thisObject;
 						for (Object thisArrayListObject : thisArrayList) {
 							stringBuilder.append(thisArrayListObject.toString()
-									+ "<br>");
+									+ NEWLINE);
 						}
 					}
 				}
@@ -621,4 +655,36 @@ public class Explode extends ActionBarActivity {
 		outState.putBoolean(INTENT_EDITED,
 				resetIntentButton.getVisibility() == View.VISIBLE);
 	}
+
+    // support for onActivityResult
+    // OriginatorActivity -> IntentIntercept -> resendIntentActivity
+    // Forward result of sub-activity {resendIntentActivity}
+    // to caller of this activity {OriginatorActivity}.
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        this.lastResultCode = Integer.valueOf(resultCode);
+        this.lastResultIntent = getUri(data);
+        super.onActivityResult(requestCode, resultCode, data);
+        setResult(resultCode, data);
+        refreshUI();
+    }
+
+    private static Intent cloneIntent(Intent src) {
+        return cloneIntent(getUri(src));
+    }
+
+    private static String getUri(Intent src) {
+        String intentUri = (src != null) ? src.toUri(Intent.URI_INTENT_SCHEME) : null;
+        return intentUri;
+    }
+    private static Intent cloneIntent(String intentUri) {
+        if (intentUri != null) {
+            try {
+                return Intent.parseUri(intentUri, Intent.URI_INTENT_SCHEME);
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
 }
