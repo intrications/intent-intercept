@@ -226,9 +226,11 @@ public class Explode extends ActionBarActivity {
     private void showAllIntentData(TextView textViewToIgnore) {
         showTextViewIntentData(textViewToIgnore);
 
+        categoriesLayout.removeAllViews();
         Set<String> categories = editableIntent.getCategories();
 		StringBuilder stringBuilder = new StringBuilder();
 		if (categories != null) {
+            categoriesHeader.setVisibility(View.VISIBLE);
 			stringBuilder.append("Categories:");
 			for (String category : categories) {
 				stringBuilder.append(category).append(NEWLINE);
@@ -242,6 +244,7 @@ public class Explode extends ActionBarActivity {
 			// addTextToLayout("NONE", Typeface.NORMAL, categoriesLayout);
 		}
 
+        flagsLayout.removeAllViews();
 		ArrayList<String> flagsStrings = getFlags();
 		if (flagsStrings.size() > 0) {
 			for (String thisFlagString : flagsStrings) {
@@ -250,6 +253,8 @@ public class Explode extends ActionBarActivity {
 		} else {
 			addTextToLayout("NONE", Typeface.NORMAL, flagsLayout);
 		}
+
+        extrasLayout.removeAllViews();
 		try {
 			Bundle intentBundle = editableIntent.getExtras();
 			if (intentBundle != null) {
