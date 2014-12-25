@@ -65,6 +65,43 @@ import uk.co.ashtonbrsc.android.intentintercept.R;
  */
 public class Explode extends ActionBarActivity {
 
+	private abstract class IntentUpdateTextWatcher implements TextWatcher {
+        private final TextView textView;
+
+        IntentUpdateTextWatcher(TextView textView) {
+            this.textView = textView;
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before,
+                int count) {
+            if (textWatchersActive) {
+                try {
+                    String modifiedContent = textView.getText().toString();
+                    onUpdateIntend(modifiedContent);
+                    showTextViewIntentData(textView);
+                    showResetIntentButton(true);
+                    refreshUI();
+                } catch (Exception e) {
+                    Toast.makeText(Explode.this, e.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        abstract protected void onUpdateIntend(String modifiedContent);
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count,
+                int after) {
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+        }
+    };
+
     private static final String INTENT_EDITED = "intent_edited";
 	private static final int STANDARD_INDENT_SIZE_IN_DIP = 10;
     private static final String NEWLINE = "\n<br>";
@@ -368,124 +405,37 @@ public class Explode extends ActionBarActivity {
 	}
 
 	private void setupTextWatchers() {
-		action.addTextChangedListener(new TextWatcher() {
+		action.addTextChangedListener(new IntentUpdateTextWatcher(action) {
 			@Override
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
-				if (textWatchersActive) {
-					try {
-						editableIntent.setAction(action.getText().toString());
-                        showTextViewIntentData(action);
-                        showResetIntentButton(true);
-						refreshUI();
-					} catch (Exception e) {
-						Toast.makeText(Explode.this, e.getMessage(),
-								Toast.LENGTH_SHORT).show();
-						e.printStackTrace();
-					}
-				}
-			}
-
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-			}
-
-			@Override
-			public void afterTextChanged(Editable s) {
-			}
-		});
-		data.addTextChangedListener(new TextWatcher() {
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
-				if (textWatchersActive) {
-					try {
-						String dataString = data.getText().toString();
-
-                        // setData clears type so we save it
-						String savedType = editableIntent.getType();
-                        editableIntent.setDataAndType(Uri.parse(dataString), savedType);
-                        showTextViewIntentData(data);
-                        showResetIntentButton(true);
-                        refreshUI();
-                    } catch (Exception e) {
-						Toast.makeText(Explode.this, e.getMessage(),
-								Toast.LENGTH_SHORT).show();
-						e.printStackTrace();
-					}
-				}
-			}
-
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-			}
-
-			@Override
-			public void afterTextChanged(Editable s) {
-			}
-		});
-		type.addTextChangedListener(new TextWatcher() {
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
-				if (textWatchersActive) {
-					try {
-                        // setData clears type so we save it
-                        String dataString = editableIntent.getDataString();
-                        String savedType = type.getText().toString(); editableIntent.getType();
-                        editableIntent.setDataAndType(Uri.parse(dataString), savedType);
-                        showTextViewIntentData(type);
-                        showResetIntentButton(true);
-                        refreshUI();
-
-                    } catch (Exception e) {
-						Toast.makeText(Explode.this, e.getMessage(),
-								Toast.LENGTH_SHORT).show();
-						e.printStackTrace();
-					}
-				}
-			}
-
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-			}
-
-			@Override
-			public void afterTextChanged(Editable s) {
-			}
-		});
-        uri.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before,
-                                      int count) {
-                if (textWatchersActive) {
-                    try {
-                        String intentUri = uri.getText().toString();
-                        Intent newIntent = cloneIntent(intentUri);
-
-                        // no error yet so continue
-                        editableIntent = newIntent;
-                        showTextViewIntentData(uri);
-                        showResetIntentButton(true);
-                        refreshUI();
-                    } catch (Exception e) {
-                        Toast.makeText(Explode.this, e.getMessage(),
-                                Toast.LENGTH_SHORT).show();
-                        e.printStackTrace();
-                    }
-                }
+            protected void onUpdateIntend(String modifiedContent) {
+                editableIntent.setAction(modifiedContent);
             }
-
+		});
+		data.addTextChangedListener(new IntentUpdateTextWatcher(data) {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
+            protected void onUpdateIntend(String modifiedContent) {
+                // setData clears type so we save it
+                String savedType = editableIntent.getType();
+                editableIntent.setDataAndType(Uri.parse(modifiedContent), savedType);
             }
-
+		});
+		type.addTextChangedListener(new IntentUpdateTextWatcher(type) {
             @Override
-            public void afterTextChanged(Editable s) {
+            protected void onUpdateIntend(String modifiedContent) {
+                // setData clears type so we save it
+                String dataString = editableIntent.getDataString();
+                editableIntent.setDataAndType(Uri.parse(dataString), modifiedContent);
+            }
+		});
+        uri.addTextChangedListener(new IntentUpdateTextWatcher(uri) {
+            @Override
+            protected void onUpdateIntend(String modifiedContent) {
+                Intent newIntent = cloneIntent(modifiedContent);
+
+                // no error yet so continue
+                editableIntent = newIntent;
+                // this time must update all content since extras/flags may have been changed
+                showAllIntentData(uri);
             }
         });
 	}
