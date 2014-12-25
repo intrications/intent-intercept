@@ -74,6 +74,7 @@ public class Explode extends ActionBarActivity {
 	private EditText action;
 	private EditText data;
 	private EditText type;
+    private EditText uri;
 	private TextView categoriesHeader;
 	private LinearLayout categoriesLayout;
 	private LinearLayout flagsLayout;
@@ -90,6 +91,7 @@ public class Explode extends ActionBarActivity {
     private Integer lastResultCode = null;
     private String lastResultIntent = null;
 
+    /** false: text-change-events are not active. */
     protected boolean textWatchersActive;
 
 	private static final Map<Integer, String> FLAGS_MAP = new HashMap<Integer, String>() {
@@ -178,20 +180,16 @@ public class Explode extends ActionBarActivity {
 
         setupTextWatchers();
 
-        showIntentDetails();
+        showAllIntentData(null);
 
         showResetIntentButton(isVisible);
     }
 
-    private void showIntentDetails() {
+    /** textViewToIgnore is not updated so current selected char in that textview will not change */
+    private void showAllIntentData(TextView textViewToIgnore) {
+        showTextViewIntentData(textViewToIgnore);
 
-		action.setText(editableIntent.getAction());
-		if (editableIntent.getDataString() != null) {
-			data.setText(editableIntent.getDataString());
-		}
-		type.setText(getIntent().getType());
-
-		Set<String> categories = editableIntent.getCategories();
+        Set<String> categories = editableIntent.getCategories();
 		StringBuilder stringBuilder = new StringBuilder();
 		if (categories != null) {
 			stringBuilder.append("Categories:");
@@ -258,8 +256,6 @@ public class Explode extends ActionBarActivity {
 			e.printStackTrace();
 		}
 
-		checkAndShowMatchingActivites();
-
 		// resolveInfo = pm.queryIntentServices(intent, 0);
 		// stringBuilder.append("<br><b><u>" + resolveInfo.size()
 		// + " services match this intent:</u></b><br>");
@@ -274,7 +270,19 @@ public class Explode extends ActionBarActivity {
 		refreshUI();
 	}
 
-	private ArrayList<String> getFlags() {
+    /** textViewToIgnore is not updated so current selected char in that textview will not change */
+    private void showTextViewIntentData(TextView textViewToIgnore) {
+        textWatchersActive = false;
+        if (textViewToIgnore != action) action.setText(editableIntent.getAction());
+        if ((textViewToIgnore != data) && (editableIntent.getDataString() != null)) {
+            data.setText(editableIntent.getDataString());
+        }
+        if (textViewToIgnore != type) type.setText(editableIntent.getType());
+        if (textViewToIgnore != uri) uri.setText(getUri(editableIntent));
+        textWatchersActive = true;
+    }
+
+    private ArrayList<String> getFlags() {
 		ArrayList<String> flagsStrings = new ArrayList<String>();
 		int flags = editableIntent.getFlags();
 		Set<Entry<Integer, String>> set = FLAGS_MAP.entrySet();
@@ -299,8 +307,10 @@ public class Explode extends ActionBarActivity {
 		int numberOfMatchingActivities = resolveInfo.size() - 1;
 
 		if (numberOfMatchingActivities < 1) {
+            this.setTitle(R.string.app_name);
 			activitiesHeader.setText("NO ACTIVITIES MATCH THIS INTENT");
 		} else {
+            this.setTitle("(" + numberOfMatchingActivities + ") " + getString(R.string.app_name));
 			activitiesHeader.setText(numberOfMatchingActivities
 					+ " ACTIVITIES MATCH THIS INTENT");
 			for (int i = 0; i <= numberOfMatchingActivities; i++) {
@@ -341,6 +351,7 @@ public class Explode extends ActionBarActivity {
 		action = (EditText) findViewById(R.id.action);
 		data = (EditText) findViewById(R.id.data);
 		type = (EditText) findViewById(R.id.type);
+        uri = (EditText) findViewById(R.id.uri);
 		categoriesHeader = (TextView) findViewById(R.id.categories_header);
 		categoriesLayout = (LinearLayout) findViewById(R.id.categories_layout);
 		flagsLayout = (LinearLayout) findViewById(R.id.flags_layout);
@@ -364,7 +375,8 @@ public class Explode extends ActionBarActivity {
 				if (textWatchersActive) {
 					try {
 						editableIntent.setAction(action.getText().toString());
-						showResetIntentButton(true);
+                        showTextViewIntentData(action);
+                        showResetIntentButton(true);
 						refreshUI();
 					} catch (Exception e) {
 						Toast.makeText(Explode.this, e.getMessage(),
@@ -390,15 +402,14 @@ public class Explode extends ActionBarActivity {
 				if (textWatchersActive) {
 					try {
 						String dataString = data.getText().toString();
-						String savedType = editableIntent.getType(); // setData
-																		// clears
-						// type
-						// so we save it
-						editableIntent.setData(Uri.parse(dataString));
-						type.setText(savedType); // and re-set it
-						showResetIntentButton(true);
-						refreshUI();
-					} catch (Exception e) {
+
+                        // setData clears type so we save it
+						String savedType = editableIntent.getType();
+                        editableIntent.setDataAndType(Uri.parse(dataString), savedType);
+                        showTextViewIntentData(data);
+                        showResetIntentButton(true);
+                        refreshUI();
+                    } catch (Exception e) {
 						Toast.makeText(Explode.this, e.getMessage(),
 								Toast.LENGTH_SHORT).show();
 						e.printStackTrace();
@@ -421,10 +432,15 @@ public class Explode extends ActionBarActivity {
 					int count) {
 				if (textWatchersActive) {
 					try {
-						editableIntent.setType(type.getText().toString());
-						showResetIntentButton(true);
-						refreshUI();
-					} catch (Exception e) {
+                        // setData clears type so we save it
+                        String dataString = editableIntent.getDataString();
+                        String savedType = type.getText().toString(); editableIntent.getType();
+                        editableIntent.setDataAndType(Uri.parse(dataString), savedType);
+                        showTextViewIntentData(type);
+                        showResetIntentButton(true);
+                        refreshUI();
+
+                    } catch (Exception e) {
 						Toast.makeText(Explode.this, e.getMessage(),
 								Toast.LENGTH_SHORT).show();
 						e.printStackTrace();
@@ -441,9 +457,40 @@ public class Explode extends ActionBarActivity {
 			public void afterTextChanged(Editable s) {
 			}
 		});
+        uri.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before,
+                                      int count) {
+                if (textWatchersActive) {
+                    try {
+                        String intentUri = uri.getText().toString();
+                        Intent newIntent = cloneIntent(intentUri);
+
+                        // no error yet so continue
+                        editableIntent = newIntent;
+                        showTextViewIntentData(uri);
+                        showResetIntentButton(true);
+                        refreshUI();
+                    } catch (Exception e) {
+                        Toast.makeText(Explode.this, e.getMessage(),
+                                Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
 	}
 
-	private void showResetIntentButton(boolean visible) {
+    private void showResetIntentButton(boolean visible) {
 		resendIntentButton.setText("Send Edited Intent");
 		resetIntentButton.setVisibility((visible) ? View.VISIBLE : View.GONE);
 	}
@@ -461,7 +508,10 @@ public class Explode extends ActionBarActivity {
         // this would break onActivityResult
 		// startActivity(originalIntent); // reload this with original data
 		// finish();
+        textWatchersActive = false;
         showInitialIntent(false);
+        textWatchersActive = true;
+
         refreshUI();
 	}
 
