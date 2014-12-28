@@ -61,6 +61,19 @@
                 android:hint="null" />
 
             <uk.co.ashtonbrsc.intentexplode.widget.UnderlinedTextView
+                style="@style/TextHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="URI" />
+
+            <uk.co.ashtonbrsc.intentexplode.widget.BlockEnterEditText
+                android:id="@+id/uri"
+                style="@style/EditTextNoSuggestion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="null" />
+
+            <uk.co.ashtonbrsc.intentexplode.widget.UnderlinedTextView
                 android:id="@+id/categories_header"
                 style="@style/TextHeader"
                 android:layout_width="match_parent"

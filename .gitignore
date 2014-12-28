@@ -23,9 +23,8 @@ local.properties
 *.iws
 target
 out/
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/misc.xml
+.idea
+*.iml
 
 # Gradle
 build/
@@ -33,3 +32,4 @@ build/
 
 # OS X
 .DS_Store
+/gradle-app.setting
