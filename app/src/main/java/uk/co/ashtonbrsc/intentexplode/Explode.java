@@ -349,10 +349,8 @@ public class Explode extends ActionBarActivity {
 		int numberOfMatchingActivities = resolveInfo.size() - 1;
 
 		if (numberOfMatchingActivities < 1) {
-            this.setTitle(R.string.app_name);
 			activitiesHeader.setText("NO ACTIVITIES MATCH THIS INTENT");
 		} else {
-            this.setTitle("(" + numberOfMatchingActivities + ") " + getString(R.string.app_name));
 			activitiesHeader.setText(numberOfMatchingActivities
 					+ " ACTIVITIES MATCH THIS INTENT");
 			for (int i = 0; i <= numberOfMatchingActivities; i++) {
