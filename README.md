@@ -1,6 +1,8 @@
 Intent Intercept Android app
 ================
 
+[![Build Status](https://travis-ci.org/intrications/intent-intercept.svg?branch=master)](https://travis-ci.org/intrications/intent-intercept)
+
 Summary: View inter-app communication
 
 Description:
