@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar" />
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar" /> <!--  @android:style/Theme.Holo.Light.DarkActionBar -->
 
     <style name="TextHeader">
         <item name="android:textSize">16sp</item>
