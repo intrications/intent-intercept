@@ -65,7 +65,7 @@ import uk.co.ashtonbrsc.android.intentintercept.R;
  */
 public class Explode extends ActionBarActivity {
 
-	private abstract class IntentUpdateTextWatcher implements TextWatcher {
+    private abstract class IntentUpdateTextWatcher implements TextWatcher {
         private final TextView textView;
 
         IntentUpdateTextWatcher(TextView textView) {
@@ -121,7 +121,13 @@ public class Explode extends ActionBarActivity {
 	private Button resendIntentButton;
 	private Button resetIntentButton;
 	private float density;
+
+    /** String representation of intent as uri */
 	private String originalIntent;
+
+    /** Bugfix #14: extras that are lost in the intent <-> string conversion */
+    private Bundle additionalExtas;
+
     private Intent editableIntent;
 
     // support for onActivityResult
@@ -197,19 +203,42 @@ public class Explode extends ActionBarActivity {
 
 		setContentView(R.layout.explode);
 
-        originalIntent = getUri(getIntent());
+        rememberIntent(getIntent());
 
         final boolean isVisible = savedInstanceState != null
                 && savedInstanceState.getBoolean(INTENT_EDITED);
         showInitialIntent(isVisible);
 	}
 
+    private void rememberIntent(Intent original) {
+        this.originalIntent = getUri(original);
+
+        Intent copy = cloneIntent(this.originalIntent);
+
+        final Bundle originalExtras = original.getExtras();
+
+        if (originalExtras != null) {
+            // bugfix #14: collect extras that are lost in the intent <-> string conversion
+            Bundle additionalExtas = new Bundle(originalExtras);
+            for (String key : originalExtras.keySet()) {
+                if (copy.hasExtra(key)) {
+                    additionalExtas.remove(key);
+                }
+            }
+
+            if (!additionalExtas.isEmpty()) {
+                this.additionalExtas = additionalExtas;
+            }
+        }
+
+    }
+
     /**
      * creates a clone of originalIntent and displays it for editing
      * @param isVisible
      */
     private void showInitialIntent(boolean isVisible) {
-        editableIntent = cloneIntent(originalIntent);
+        editableIntent = cloneIntent(this.originalIntent);
 
         editableIntent.setComponent(null);
 
@@ -459,7 +488,7 @@ public class Explode extends ActionBarActivity {
 
 	public void onResetIntent(View v) {
         // this would break onActivityResult
-		// startActivity(originalIntent); // reload this with original data
+		// startActivity(this.originalIntent); // reload this with original data
 		// finish();
         textWatchersActive = false;
         showInitialIntent(false);
@@ -672,7 +701,7 @@ public class Explode extends ActionBarActivity {
         refreshUI();
     }
 
-    private static Intent cloneIntent(Intent src) {
+    private Intent cloneIntent(Intent src) {
         return cloneIntent(getUri(src));
     }
 
@@ -680,10 +709,17 @@ public class Explode extends ActionBarActivity {
         String intentUri = (src != null) ? src.toUri(Intent.URI_INTENT_SCHEME) : null;
         return intentUri;
     }
-    private static Intent cloneIntent(String intentUri) {
+    private Intent cloneIntent(String intentUri) {
         if (intentUri != null) {
             try {
-                return Intent.parseUri(intentUri, Intent.URI_INTENT_SCHEME);
+                Intent clone = Intent.parseUri(intentUri, Intent.URI_INTENT_SCHEME);
+
+                // bugfix #14: restore extras that are lost in the intent <-> string conversion
+                if (additionalExtas != null) {
+                    clone.putExtras(additionalExtas);
+                }
+
+                return clone;
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
