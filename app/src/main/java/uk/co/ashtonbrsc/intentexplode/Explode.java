@@ -378,8 +378,10 @@ public class Explode extends ActionBarActivity {
 		int numberOfMatchingActivities = resolveInfo.size() - 1;
 
 		if (numberOfMatchingActivities < 1) {
+            resendIntentButton.setEnabled(false);
 			activitiesHeader.setText("NO ACTIVITIES MATCH THIS INTENT");
 		} else {
+            resendIntentButton.setEnabled(true);
 			activitiesHeader.setText(numberOfMatchingActivities
 					+ " ACTIVITIES MATCH THIS INTENT");
 			for (int i = 0; i <= numberOfMatchingActivities; i++) {
