@@ -20,7 +20,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.support.v4.app.ShareCompat;
 
 import uk.co.ashtonbrsc.android.intentintercept.R;
 
@@ -43,10 +42,16 @@ public class SettingsFragment extends PreferenceFragment implements Preference
                 .OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("plain/text");
+                i.putExtra(Intent.EXTRA_TEXT, "Test Intent");
+                getActivity().startActivity(Intent.createChooser(i,"Select Intent Intercept"));
+/*
                 Intent intent = ShareCompat.IntentBuilder.from(getActivity()).setChooserTitle
                         ("Select Intent Intercept").setType("plain/text")
                         .setText("Test Intent").createChooserIntent();
                 startActivity(intent);
+                */
                 return true;
             }
         });

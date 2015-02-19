@@ -14,12 +14,12 @@
 
 package uk.co.ashtonbrsc.intentexplode;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 
 import uk.co.ashtonbrsc.android.intentintercept.R;
 
-public class Settings extends ActionBarActivity {
+public class Settings extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
