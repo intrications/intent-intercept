@@ -14,6 +14,7 @@
 
 package uk.co.ashtonbrsc.intentexplode;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -22,9 +23,6 @@ import android.content.pm.ResolveInfo;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.ShareActionProvider;
 import android.text.ClipboardManager;
 import android.text.Editable;
 import android.text.Html;
@@ -42,6 +40,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,7 +62,7 @@ import uk.co.ashtonbrsc.android.intentintercept.R;
 /**
  * This is actually an IntentEditActivity
  */
-public class Explode extends ActionBarActivity {
+public class Explode extends Activity {
 
     private abstract class IntentUpdateTextWatcher implements TextWatcher {
         private final TextView textView;
@@ -645,12 +644,13 @@ public class Explode extends ActionBarActivity {
 		getMenuInflater().inflate(R.menu.menu, menu);
 		MenuItem actionItem = menu.findItem(R.id.share);
 
-        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(actionItem);
-		// shareActionProvider = (ShareActionProvider) actionItem.getActionProvider(); // api-14
+        shareActionProvider = (ShareActionProvider) actionItem.getActionProvider();
+
+        // shareActionProvider = (ShareActionProvider) actionItem.getActionProvider(); // api-14
 
         if (shareActionProvider == null) {
             shareActionProvider = new ShareActionProvider(this);
-            MenuItemCompat.setActionProvider(actionItem, shareActionProvider);
+            actionItem.setActionProvider(shareActionProvider);
         }
 
         shareActionProvider
