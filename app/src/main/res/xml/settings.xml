@@ -25,7 +25,7 @@
     </Preference>
     <Preference
         android:key="viewMyOtherApps"
-        android:title="View Intrications&apos; other apps" >
+        android:title="View other apps by Intrications" >
         <intent
             android:action="android.intent.action.VIEW"
             android:data="https://play.google.com/store/apps/developer?id=Intrications" >
