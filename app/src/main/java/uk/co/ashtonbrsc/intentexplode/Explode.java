@@ -78,7 +78,7 @@ public class Explode extends ActionBarActivity {
             if (textWatchersActive) {
                 try {
                     String modifiedContent = textView.getText().toString();
-                    onUpdateIntend(modifiedContent);
+                    onUpdateIntent(modifiedContent);
                     showTextViewIntentData(textView);
                     showResetIntentButton(true);
                     refreshUI();
@@ -90,7 +90,7 @@ public class Explode extends ActionBarActivity {
             }
         }
 
-        abstract protected void onUpdateIntend(String modifiedContent);
+        abstract protected void onUpdateIntent(String modifiedContent);
 
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count,
@@ -378,10 +378,10 @@ public class Explode extends ActionBarActivity {
 		int numberOfMatchingActivities = resolveInfo.size() - 1;
 
 		if (numberOfMatchingActivities < 1) {
-            this.setTitle(R.string.app_name);
+            resendIntentButton.setEnabled(false);
 			activitiesHeader.setText("NO ACTIVITIES MATCH THIS INTENT");
 		} else {
-            this.setTitle("(" + numberOfMatchingActivities + ") " + getString(R.string.app_name));
+            resendIntentButton.setEnabled(true);
 			activitiesHeader.setText(numberOfMatchingActivities
 					+ " ACTIVITIES MATCH THIS INTENT");
 			for (int i = 0; i <= numberOfMatchingActivities; i++) {
@@ -441,13 +441,13 @@ public class Explode extends ActionBarActivity {
 	private void setupTextWatchers() {
 		action.addTextChangedListener(new IntentUpdateTextWatcher(action) {
 			@Override
-            protected void onUpdateIntend(String modifiedContent) {
+            protected void onUpdateIntent(String modifiedContent) {
                 editableIntent.setAction(modifiedContent);
             }
 		});
 		data.addTextChangedListener(new IntentUpdateTextWatcher(data) {
             @Override
-            protected void onUpdateIntend(String modifiedContent) {
+            protected void onUpdateIntent(String modifiedContent) {
                 // setData clears type so we save it
                 String savedType = editableIntent.getType();
                 editableIntent.setDataAndType(Uri.parse(modifiedContent), savedType);
@@ -455,7 +455,7 @@ public class Explode extends ActionBarActivity {
 		});
 		type.addTextChangedListener(new IntentUpdateTextWatcher(type) {
             @Override
-            protected void onUpdateIntend(String modifiedContent) {
+            protected void onUpdateIntent(String modifiedContent) {
                 // setData clears type so we save it
                 String dataString = editableIntent.getDataString();
                 editableIntent.setDataAndType(Uri.parse(dataString), modifiedContent);
@@ -463,7 +463,7 @@ public class Explode extends ActionBarActivity {
 		});
         uri.addTextChangedListener(new IntentUpdateTextWatcher(uri) {
             @Override
-            protected void onUpdateIntend(String modifiedContent) {
+            protected void onUpdateIntent(String modifiedContent) {
                 Intent newIntent = cloneIntent(modifiedContent);
 
                 // no error yet so continue
