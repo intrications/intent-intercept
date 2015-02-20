@@ -110,13 +110,17 @@
                 <data android:scheme="zxing" android:host="scan" android:path="/"/>
             </intent-filter>
         </activity>
-        <activity android:name="uk.co.ashtonbrsc.intentexplode.Settings" >
+        <activity android:name="uk.co.ashtonbrsc.intentexplode.StartupActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="uk.co.ashtonbrsc.intentexplode.Pre15SettingsActivity"
+            android:theme="@android:style/Theme.Light">
+        </activity>
+        <activity android:name="uk.co.ashtonbrsc.intentexplode.SettingsActivity" />
     </application>
 
 </manifest>

@@ -14,56 +14,67 @@
 
 package uk.co.ashtonbrsc.intentexplode;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ShareCompat;
 
 import uk.co.ashtonbrsc.android.intentintercept.R;
 
-public class SettingsFragment extends PreferenceFragment implements Preference
-        .OnPreferenceChangeListener {
-    private Preference interceptEnabledPreference;
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+public class SettingsFragment extends PreferenceFragment {
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        addPreferencesFromResource(R.xml.enable_disable_settings);
         addPreferencesFromResource(R.xml.settings);
+        setupSettings(getActivity(), getPreferenceManager());
+    }
 
-        interceptEnabledPreference = findPreference(getString(R.string.intercept_enable_pref));
+    public static void setupSettings(final Activity activity, PreferenceManager preferenceManager) {
 
-        interceptEnabledPreference.setOnPreferenceChangeListener(this);
+        final Preference interceptEnabledPreference = preferenceManager
+                .findPreference(activity.getString(R.string.intercept_enable_pref));
 
-        Preference sendTestIntentPreference = findPreference(getString(R.string
-                .send_test_intent_pref));
+        interceptEnabledPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                if (preference == interceptEnabledPreference) {
+
+                    Boolean enabled = (Boolean) newValue;
+                    int flag = (enabled ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+                            : PackageManager.COMPONENT_ENABLED_STATE_DISABLED);
+                    ComponentName component = new ComponentName(activity, Explode.class);
+
+                    activity.getPackageManager().setComponentEnabledSetting(component, flag,
+                            PackageManager.DONT_KILL_APP);
+                }
+                return true;
+            }
+        });
+
+        Preference sendTestIntentPreference = preferenceManager
+                .findPreference(activity.getString(R.string.send_test_intent_pref));
         sendTestIntentPreference.setOnPreferenceClickListener(new Preference
                 .OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                Intent intent = ShareCompat.IntentBuilder.from(getActivity()).setChooserTitle
+                Intent intent = ShareCompat.IntentBuilder.from(activity).setChooserTitle
                         ("Select Intent Intercept").setType("plain/text")
                         .setText("Test Intent").createChooserIntent();
-                startActivity(intent);
+                activity.startActivity(intent);
                 return true;
             }
         });
     }
-
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference == interceptEnabledPreference) {
-
-            Boolean enabled = (Boolean) newValue;
-            int flag = (enabled ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED
-                    : PackageManager.COMPONENT_ENABLED_STATE_DISABLED);
-            ComponentName component = new ComponentName(getActivity(), Explode.class);
-
-            getActivity().getPackageManager().setComponentEnabledSetting(component, flag,
-                    PackageManager.DONT_KILL_APP);
-        }
-        return true;
-    }
-
 }
