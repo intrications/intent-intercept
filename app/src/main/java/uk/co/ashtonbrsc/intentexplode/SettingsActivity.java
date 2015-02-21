@@ -28,6 +28,7 @@ public class SettingsActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
+        setTitle(getTitle() + " - " + SettingsUtil.getAppVersionName(this));
 
         getFragmentManager().beginTransaction().replace(R.id.content_frame, new SettingsFragment()).commit();
     }

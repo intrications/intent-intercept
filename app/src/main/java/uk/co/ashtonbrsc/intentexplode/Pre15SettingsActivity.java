@@ -14,5 +14,6 @@ public class Pre15SettingsActivity extends PreferenceActivity {
         addPreferencesFromResource(R.xml.enable_disable_settings);
         addPreferencesFromResource(R.xml.settings);
         SettingsUtil.setupSettings(this, getPreferenceManager());
+        setTitle(getTitle() + " - " + SettingsUtil.getAppVersionName(this));
     }
 }
