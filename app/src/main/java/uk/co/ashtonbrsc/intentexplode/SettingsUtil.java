@@ -2,6 +2,7 @@ package uk.co.ashtonbrsc.intentexplode;
 
 import android.app.Activity;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.preference.Preference;
@@ -48,5 +49,16 @@ public class SettingsUtil {
                 return true;
             }
         });
+    }
+
+    public static String getAppVersionName(final Context context) {
+        try {
+
+            final String versionName = context.getPackageManager()
+                    .getPackageInfo(context.getPackageName(), 0).versionName;
+            return versionName;
+        } catch (final PackageManager.NameNotFoundException e) {
+        }
+        return null;
     }
 }

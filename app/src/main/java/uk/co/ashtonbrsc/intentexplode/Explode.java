@@ -515,8 +515,8 @@ public class Explode extends ActionBarActivity {
 		return share;
 	}
 
-	private Spanned getIntentDetailsString() { // TODO make sure this has all
-												// the details
+    /** Get all known details about Intent. */
+	private Spanned getIntentDetailsString() {
 		StringBuilder stringBuilder = new StringBuilder();
 
         // k3b so intent can be reloaded using
@@ -626,11 +626,22 @@ public class Explode extends ActionBarActivity {
 			}
 		}
 
+        stringBuilder.append(getTeaser());
         String intentDetailsHtml = stringBuilder.toString();
 		return Html.fromHtml(intentDetailsHtml);
 	}
 
-	@Override
+    private String getTeaser() {
+        String html = this.getResources().getString(R.string.html_teaser);
+
+        final String versionName = SettingsUtil.getAppVersionName(this);
+        if (versionName != null) {
+            html = html.replace("$versionName$", versionName);
+        }
+        return html;
+    }
+
+    @Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.menu, menu);
 		MenuItem actionItem = menu.findItem(R.id.share);
