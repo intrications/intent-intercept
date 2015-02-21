@@ -48,7 +48,6 @@ import android.widget.Toast;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -105,8 +104,6 @@ public class Explode extends ActionBarActivity {
     private static final String INTENT_EDITED = "intent_edited";
 	private static final int STANDARD_INDENT_SIZE_IN_DIP = 10;
     private static final String NEWLINE = "\n<br>";
-
-    private String intentDetailsHtml;
 	private ShareActionProvider shareActionProvider; // api-14 or compat
 	private EditText action;
 	private EditText data;
@@ -139,61 +136,61 @@ public class Explode extends ActionBarActivity {
 
 	private static final Map<Integer, String> FLAGS_MAP = new HashMap<Integer, String>() {
 		{
-			put(new Integer(Intent.FLAG_GRANT_READ_URI_PERMISSION),
+            put(Intent.FLAG_GRANT_READ_URI_PERMISSION,
 					"FLAG_GRANT_READ_URI_PERMISSION");
-			put(new Integer(Intent.FLAG_GRANT_WRITE_URI_PERMISSION),
+            put(Intent.FLAG_GRANT_WRITE_URI_PERMISSION,
 					"FLAG_GRANT_WRITE_URI_PERMISSION");
-			put(new Integer(Intent.FLAG_FROM_BACKGROUND),
+            put(Intent.FLAG_FROM_BACKGROUND,
 					"FLAG_FROM_BACKGROUND");
-			put(new Integer(Intent.FLAG_DEBUG_LOG_RESOLUTION),
+            put(Intent.FLAG_DEBUG_LOG_RESOLUTION,
 					"FLAG_DEBUG_LOG_RESOLUTION");
-			put(new Integer(Intent.FLAG_EXCLUDE_STOPPED_PACKAGES),
+            put(Intent.FLAG_EXCLUDE_STOPPED_PACKAGES,
 					"FLAG_EXCLUDE_STOPPED_PACKAGES");
-			put(new Integer(Intent.FLAG_INCLUDE_STOPPED_PACKAGES),
+            put(Intent.FLAG_INCLUDE_STOPPED_PACKAGES,
 					"FLAG_INCLUDE_STOPPED_PACKAGES");
-			put(new Integer(Intent.FLAG_ACTIVITY_NO_HISTORY),
+            put(Intent.FLAG_ACTIVITY_NO_HISTORY,
 					"FLAG_ACTIVITY_NO_HISTORY");
-			put(new Integer(Intent.FLAG_ACTIVITY_SINGLE_TOP),
+            put(Intent.FLAG_ACTIVITY_SINGLE_TOP,
 					"FLAG_ACTIVITY_SINGLE_TOP");
-			put(new Integer(Intent.FLAG_ACTIVITY_NEW_TASK),
+            put(Intent.FLAG_ACTIVITY_NEW_TASK,
 					"FLAG_ACTIVITY_NEW_TASK");
-			put(new Integer(Intent.FLAG_ACTIVITY_MULTIPLE_TASK),
+            put(Intent.FLAG_ACTIVITY_MULTIPLE_TASK,
 					"FLAG_ACTIVITY_MULTIPLE_TASK");
-			put(new Integer(Intent.FLAG_ACTIVITY_CLEAR_TOP),
+            put(Intent.FLAG_ACTIVITY_CLEAR_TOP,
 					"FLAG_ACTIVITY_CLEAR_TOP");
-			put(new Integer(Intent.FLAG_ACTIVITY_FORWARD_RESULT),
+            put(Intent.FLAG_ACTIVITY_FORWARD_RESULT,
 					"FLAG_ACTIVITY_FORWARD_RESULT");
-			put(new Integer(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP),
+            put(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP,
 					"FLAG_ACTIVITY_PREVIOUS_IS_TOP");
-			put(new Integer(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS),
+            put(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS,
 					"FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS");
-			put(new Integer(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT),
+            put(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT,
 					"FLAG_ACTIVITY_BROUGHT_TO_FRONT");
-			put(new Integer(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED),
+            put(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED,
 					"FLAG_ACTIVITY_RESET_TASK_IF_NEEDED");
-			put(new Integer(Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY),
+            put(Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY,
 					"FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY");
-			put(new Integer(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET),
+            put(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET,
 					"FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET");
-			put(new Integer(Intent.FLAG_ACTIVITY_NO_USER_ACTION),
+            put(Intent.FLAG_ACTIVITY_NO_USER_ACTION,
 					"FLAG_ACTIVITY_NO_USER_ACTION");
-			put(new Integer(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT),
+            put(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT,
 					"FLAG_ACTIVITY_REORDER_TO_FRONT");
-			put(new Integer(Intent.FLAG_ACTIVITY_NO_ANIMATION),
+            put(Intent.FLAG_ACTIVITY_NO_ANIMATION,
 					"FLAG_ACTIVITY_NO_ANIMATION");
-			put(new Integer(Intent.FLAG_ACTIVITY_CLEAR_TASK),
+            put(Intent.FLAG_ACTIVITY_CLEAR_TASK,
 					"FLAG_ACTIVITY_CLEAR_TASK");
-			put(new Integer(Intent.FLAG_ACTIVITY_TASK_ON_HOME),
+            put(Intent.FLAG_ACTIVITY_TASK_ON_HOME,
 					"FLAG_ACTIVITY_TASK_ON_HOME");
-			put(new Integer(Intent.FLAG_RECEIVER_REGISTERED_ONLY),
+            put(Intent.FLAG_RECEIVER_REGISTERED_ONLY,
 					"FLAG_RECEIVER_REGISTERED_ONLY");
-			put(new Integer(Intent.FLAG_RECEIVER_REPLACE_PENDING),
+            put(Intent.FLAG_RECEIVER_REPLACE_PENDING,
 					"FLAG_RECEIVER_REPLACE_PENDING");
-			put(new Integer(Intent.FLAG_RECEIVER_FOREGROUND),
+            put(Intent.FLAG_RECEIVER_FOREGROUND,
 					"FLAG_RECEIVER_FOREGROUND");
-			put(new Integer(0x08000000),
+            put(0x08000000,
 					"FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT");
-			put(new Integer(0x04000000), "FLAG_RECEIVER_BOOT_UPGRADE");
+            put(0x04000000, "FLAG_RECEIVER_BOOT_UPGRADE");
 		}
 	};
 
@@ -257,12 +254,9 @@ public class Explode extends ActionBarActivity {
 
         categoriesLayout.removeAllViews();
         Set<String> categories = editableIntent.getCategories();
-		StringBuilder stringBuilder = new StringBuilder();
 		if (categories != null) {
             categoriesHeader.setVisibility(View.VISIBLE);
-			stringBuilder.append("Categories:");
 			for (String category : categories) {
-				stringBuilder.append(category).append(NEWLINE);
 				TextView text2 = new TextView(this);
 				text2.setText(category);
 				text2.setTextAppearance(this, R.style.TextFlags);
@@ -288,7 +282,6 @@ public class Explode extends ActionBarActivity {
 			Bundle intentBundle = editableIntent.getExtras();
 			if (intentBundle != null) {
 				Set<String> keySet = intentBundle.keySet();
-				stringBuilder.append("<br><b><u>Bundle:</u></b><br>");
 				int count = 0;
 
 				for (String key : keySet) {
@@ -357,9 +350,7 @@ public class Explode extends ActionBarActivity {
 		ArrayList<String> flagsStrings = new ArrayList<String>();
 		int flags = editableIntent.getFlags();
 		Set<Entry<Integer, String>> set = FLAGS_MAP.entrySet();
-		Iterator<Entry<Integer, String>> i = set.iterator();
-		while (i.hasNext()) {
-			Entry<Integer, String> thisFlag = (Entry<Integer, String>) i.next();
+        for (Entry<Integer, String> thisFlag : set) {
 			if ((flags & thisFlag.getKey()) != 0) {
 				flagsStrings.add(thisFlag.getValue());
 			}
@@ -464,10 +455,7 @@ public class Explode extends ActionBarActivity {
         uri.addTextChangedListener(new IntentUpdateTextWatcher(uri) {
             @Override
             protected void onUpdateIntent(String modifiedContent) {
-                Intent newIntent = cloneIntent(modifiedContent);
-
-                // no error yet so continue
-                editableIntent = newIntent;
+                editableIntent = cloneIntent(modifiedContent);
                 // this time must update all content since extras/flags may have been changed
                 showAllIntentData(uri);
             }
@@ -518,7 +506,6 @@ public class Explode extends ActionBarActivity {
 			Intent share = createShareIntent();
 			shareActionProvider.setShareIntent(share);
 		}
-		return;
 	}
 
 	private Intent createShareIntent() {
@@ -528,8 +515,8 @@ public class Explode extends ActionBarActivity {
 		return share;
 	}
 
-	private Spanned getIntentDetailsString() { // TODO make sure this has all
-												// the details
+    /** Get all known details about Intent. */
+	private Spanned getIntentDetailsString() {
 		StringBuilder stringBuilder = new StringBuilder();
 
         // k3b so intent can be reloaded using
@@ -594,14 +581,13 @@ public class Explode extends ActionBarActivity {
 					if (thisObject instanceof String || thisObject instanceof Long
 							|| thisObject instanceof Integer
 							|| thisObject instanceof Boolean) {
-						stringBuilder.append("Value: " + thisObject.toString())
+                        stringBuilder.append("Value: ").append(thisObject.toString())
 								.append(NEWLINE);
 					} else if (thisObject instanceof ArrayList) {
 						stringBuilder.append("Values:<br>");
 						ArrayList thisArrayList = (ArrayList) thisObject;
 						for (Object thisArrayListObject : thisArrayList) {
-							stringBuilder.append(thisArrayListObject.toString()
-									+ NEWLINE);
+                            stringBuilder.append(thisArrayListObject.toString()).append(NEWLINE);
 						}
 					}
 				}
@@ -623,24 +609,39 @@ public class Explode extends ActionBarActivity {
 			stringBuilder
 					.append("<br><b><u>NO ACTIVITIES MATCH THIS INTENT</u></b><br>");
 		} else {
-			stringBuilder.append("<br><b><u>" + numberOfMatchingActivities
-					+ " ACTIVITIES MATCH THIS INTENT:</u></b><br>");
+            stringBuilder.append("<br><b><u>")
+                    .append(numberOfMatchingActivities)
+                    .append(" ACTIVITIES MATCH THIS INTENT:</u></b><br>");
 			for (int i = 0; i <= numberOfMatchingActivities; i++) {
 				ResolveInfo info = resolveInfo.get(i);
 				ActivityInfo activityinfo = info.activityInfo;
 				if (!activityinfo.packageName.equals(getPackageName())) {
-					stringBuilder.append(activityinfo.loadLabel(pm) + " ("
-							+ activityinfo.packageName + " - "
-							+ activityinfo.name + ")<br>");
+                    stringBuilder.append(activityinfo.loadLabel(pm))
+                            .append(" (")
+                            .append(activityinfo.packageName)
+                            .append(" - ")
+                            .append(activityinfo.name)
+                            .append(")<br>");
 				}
 			}
 		}
 
-		intentDetailsHtml = stringBuilder.toString();
+        stringBuilder.append(getTeaser());
+        String intentDetailsHtml = stringBuilder.toString();
 		return Html.fromHtml(intentDetailsHtml);
 	}
 
-	@Override
+    private String getTeaser() {
+        String html = this.getResources().getString(R.string.html_teaser);
+
+        final String versionName = SettingsUtil.getAppVersionName(this);
+        if (versionName != null) {
+            html = html.replace("$versionName$", versionName);
+        }
+        return html;
+    }
+
+    @Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.menu, menu);
 		MenuItem actionItem = menu.findItem(R.id.share);

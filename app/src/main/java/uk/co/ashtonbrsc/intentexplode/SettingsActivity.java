@@ -14,17 +14,21 @@
 
 package uk.co.ashtonbrsc.intentexplode;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
 import uk.co.ashtonbrsc.android.intentintercept.R;
 
-public class Settings extends ActionBarActivity {
+public class SettingsActivity extends ActionBarActivity {
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
+        setTitle(getTitle() + " - " + SettingsUtil.getAppVersionName(this));
 
         getFragmentManager().beginTransaction().replace(R.id.content_frame, new SettingsFragment()).commit();
     }

@@ -4,13 +4,13 @@
 
     <item
         android:id="@+id/copy"
-        android:icon="@drawable/ic_action_copy"
+        android:icon="@drawable/ic_action_content_copy"
         app:showAsAction="ifRoom"
         android:title="@string/copy">
     </item>
     <item
         android:id="@+id/share"
-        android:icon="@drawable/ic_action_copy"
+        android:icon="@drawable/ic_action_share"
         app:showAsAction="always"
         app:actionProviderClass="android.support.v7.widget.ShareActionProvider"
         android:title="@string/share">

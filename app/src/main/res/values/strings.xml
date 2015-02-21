@@ -4,9 +4,14 @@
     <string name="reset_intent">Reset Intent</string>
     <string name="share">Share</string>
     <string name="intent_details_copied_to_clipboard">Intent details copied to clipboard.</string>
-    <string name="share_intent_details">Share Intent Details</string>
     <string name="copy">Copy</string>
     <string name="enable_intent_intercept">Enable interception</string>
     <string name="send_test_intent_pref">sendTestIntent</string>
     <string name="intercept_enable_pref">interceptEnabled</string>
+    <string name="html_teaser">"<![CDATA[<br/>
+ <br/>
+ Created with <a href="http://www.intrications.com">intrications.com</a>'s
+ <b><a href="https://github.com/intrications/intent-intercept">Intent Intercept - $versionName$</a></b><br/>
+]]>"</string>
+
 </resources>
