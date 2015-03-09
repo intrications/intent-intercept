@@ -304,7 +304,8 @@ public class Explode extends ActionBarActivity {
 							STANDARD_INDENT_SIZE_IN_DIP, extrasLayout);
 					if (thisObject instanceof String || thisObject instanceof Long
 							|| thisObject instanceof Integer
-							|| thisObject instanceof Boolean) {
+							|| thisObject instanceof Boolean
+							|| thisObject instanceof Uri) {
 						addTextToLayout("Value: " + thisObject.toString(),
 								Typeface.ITALIC, STANDARD_INDENT_SIZE_IN_DIP,
 								extrasLayout);
