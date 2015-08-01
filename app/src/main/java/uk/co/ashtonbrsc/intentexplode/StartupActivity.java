@@ -15,5 +15,6 @@ public class StartupActivity extends Activity {
         } else {
             startActivity(new Intent(this, SettingsActivity.class));
         }
+        finish();
     }
 }
