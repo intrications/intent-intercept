@@ -19,4 +19,5 @@
     <string name="license_summary" translatable="false">Apache License, Version 2.0</string>
     <string name="license_title">Licence</string>
     <string name="view_source_code_title">View Source Code</string>
+    <string name="send_edited_intent_button">Send Edited Intent</string>
 </resources>

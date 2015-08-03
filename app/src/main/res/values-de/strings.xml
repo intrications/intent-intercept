@@ -17,4 +17,5 @@
     <string name="intent_details_copied_to_clipboard">Intent Details in die Zwischenablage kopiert.</string>
     <string name="send_test_intent_summary">Hier tippen, und dann \'Intent Abfänger\' von der Liste auswählen</string>
     <string name="view_source_code_title">Quellcode ansehen</string>
+    <string name="send_edited_intent_button">Bearbeiteten Intent senden</string>
 </resources>

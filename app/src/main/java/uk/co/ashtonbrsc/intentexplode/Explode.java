@@ -476,7 +476,7 @@ public class Explode extends ActionBarActivity {
 	}
 
     private void showResetIntentButton(boolean visible) {
-		resendIntentButton.setText("Send Edited Intent");
+		resendIntentButton.setText(R.string.send_edited_intent_button);
 		resetIntentButton.setVisibility((visible) ? View.VISIBLE : View.GONE);
 	}
 
