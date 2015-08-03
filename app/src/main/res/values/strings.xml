@@ -9,4 +9,13 @@
     <string name="enable_intent_intercept">Enable interception</string>
     <string name="send_test_intent_pref">sendTestIntent</string>
     <string name="intercept_enable_pref">interceptEnabled</string>
+    <string name="send_test_intent_title">Send Test Intent</string>
+    <string name="send_test_intent_summary">Tap this then select Intent Intercept from list</string>
+    <string name="rate_this_app_title">Rate This App</string>
+    <string name="view_my_other_apps_title">View other apps by Intrications</string>
+    <string name="visit_website_title">Visit intrications.com</string>
+    <string name="visit_google_plus_title">Visit Intrications on Google+</string>
+    <string name="view_source_code_title">View Intent Intercept source code on github</string>
+    <string name="license_summary">Apache License, Version 2.0</string>
+    <string name="license_title">Licence</string>
 </resources>
