@@ -44,8 +44,8 @@
     </Preference>
     <Preference
         android:key="viewSourceCode"
-        android:summary="@string/view_source_code_title"
-        android:title="View Source Code" >
+        android:summary="@string/view_source_code_summary"
+        android:title="@string/view_source_code_title" >
         <intent
             android:action="android.intent.action.VIEW"
             android:data="https://github.com/intrications/intent-intercept" >

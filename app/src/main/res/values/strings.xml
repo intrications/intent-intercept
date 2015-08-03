@@ -15,7 +15,8 @@
     <string name="view_my_other_apps_title">View other apps by Intrications</string>
     <string name="visit_website_title">Visit intrications.com</string>
     <string name="visit_google_plus_title">Visit Intrications on Google+</string>
-    <string name="view_source_code_title">View Intent Intercept source code on github</string>
+    <string name="view_source_code_summary">View Intent Intercept source code on github</string>
     <string name="license_summary" translatable="false">Apache License, Version 2.0</string>
     <string name="license_title">Licence</string>
+    <string name="view_source_code_title">View Source Code</string>
 </resources>
