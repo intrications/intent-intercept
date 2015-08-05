@@ -1,6 +1,6 @@
 language: android
 script: 
-    - ./gradlew assembleDebug
+    - ./gradlew build check
 
 android:
   components:
