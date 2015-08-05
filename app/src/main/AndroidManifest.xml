@@ -13,7 +13,7 @@
             android:name="uk.co.ashtonbrsc.intentexplode.Explode"
             android:label="@string/app_name"
             android:windowSoftInputMode="stateUnchanged" >
-            <intent-filter>
+            <intent-filter android:label="@string/intent_filter_label">
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.EDIT" />
                 <action android:name="android.intent.action.PICK" />
@@ -25,7 +25,7 @@
 
                 <data android:mimeType="*/*" />
             </intent-filter>
-            <intent-filter>
+            <intent-filter android:label="@string/intent_filter_label">
                 <action android:name="android.intent.action.VIEW" >
                 </action>
 
@@ -40,13 +40,13 @@
                 <data android:scheme="geo" />
                 <!-- <data android:scheme="" /> -->
             </intent-filter>
-            <intent-filter>
+            <intent-filter android:label="@string/intent_filter_label">
                 <action android:name="android.intent.action.PICK" >
                 </action>
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            <intent-filter>
+            <intent-filter android:label="@string/intent_filter_label">
                 <action android:name="android.intent.action.SEND" >
                 </action>
 
@@ -54,7 +54,7 @@
 
                 <data android:mimeType="*/*" />
             </intent-filter>
-            <intent-filter>
+            <intent-filter android:label="@string/intent_filter_label">
                 <action android:name="android.intent.action.SENDTO" >
                 </action>
 
@@ -62,7 +62,7 @@
 
                 <data android:mimeType="*/*" />
             </intent-filter>
-            <intent-filter>
+            <intent-filter android:label="@string/intent_filter_label">
                 <action android:name="android.intent.action.SENDTO" >
                 </action>
 
@@ -72,7 +72,7 @@
                 <data android:scheme="sms" />
                 <data android:scheme="smsto" />
             </intent-filter>
-            <intent-filter>
+            <intent-filter android:label="@string/intent_filter_label">
                 <action android:name="android.intent.action.SEND_MULTIPLE" >
                 </action>
 
@@ -80,30 +80,30 @@
 
                 <data android:mimeType="*/*" />
             </intent-filter>
-            <intent-filter>
+            <intent-filter android:label="@string/intent_filter_label">
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-            <intent-filter>
+            <intent-filter android:label="@string/intent_filter_label">
                 <action android:name="android.intent.action.WEB_SEARCH" />
             </intent-filter>
-            <intent-filter>
+            <intent-filter android:label="@string/intent_filter_label">
                 <action android:name="android.intent.action.ASSIST" />
 
                 <category android:name="android.intent.category.DEFAULT" >
                 </category>
             </intent-filter>
             <!-- Google Now note to self -->
-            <intent-filter >
+            <intent-filter android:label="@string/intent_filter_label" >
                 <action android:name="com.google.android.gm.action.AUTO_SEND"></action>
                 <category android:name="android.intent.category.DEFAULT"></category>
                 <data android:mimeType="*/*"></data>
             </intent-filter>
             <!-- ZXing SCAN - There may be more on https://github.com/zxing/zxing/blob/master/android/AndroidManifest.xml -->
-            <intent-filter>
+            <intent-filter android:label="@string/intent_filter_label">
                 <action android:name="com.google.zxing.client.android.SCAN"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
-            <intent-filter>
+            <intent-filter android:label="@string/intent_filter_label">
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>

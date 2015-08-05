@@ -9,4 +9,5 @@
     <string name="enable_intent_intercept">Enable interception</string>
     <string name="send_test_intent_pref">sendTestIntent</string>
     <string name="intercept_enable_pref">interceptEnabled</string>
+    <string name="intent_filter_label">Intercept the Intent</string>
 </resources>
