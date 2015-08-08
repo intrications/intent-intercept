@@ -3,8 +3,8 @@
 
     <Preference
         android:key="@string/send_test_intent_pref"
-        android:title="Send Test Intent"
-        android:summary="Tap this then select Intent Intercept from list">
+        android:title="@string/send_test_intent_title"
+        android:summary="@string/send_test_intent_summary">
         <intent
             android:action="android.intent.action.VIEW"
             android:data="Test Data" >
@@ -12,7 +12,7 @@
     </Preference>
     <Preference
         android:key="rateThisApp"
-        android:title="Rate This App" >
+        android:title="@string/rate_this_app_title" >
         <intent
             android:action="android.intent.action.VIEW"
             android:data="https://play.google.com/store/apps/details?id=uk.co.ashtonbrsc.android.intentintercept" >
@@ -20,7 +20,7 @@
     </Preference>
     <Preference
         android:key="viewMyOtherApps"
-        android:title="View other apps by Intrications" >
+        android:title="@string/view_my_other_apps_title" >
         <intent
             android:action="android.intent.action.VIEW"
             android:data="https://play.google.com/store/apps/developer?id=Intrications" >
@@ -28,7 +28,7 @@
     </Preference>
     <Preference
         android:key="visitWebsite"
-        android:title="Visit intrications.com" >
+        android:title="@string/visit_website_title" >
         <intent
             android:action="android.intent.action.VIEW"
             android:data="http://www.intrications.com" >
@@ -36,7 +36,7 @@
     </Preference>
     <Preference
         android:key="visitGooglePlus"
-        android:title="Visit Intrications on Google+" >
+        android:title="@string/visit_google_plus_title" >
         <intent
             android:action="android.intent.action.VIEW"
             android:data="https://plus.google.com/114248840147347624819/posts" >
@@ -44,8 +44,8 @@
     </Preference>
     <Preference
         android:key="viewSourceCode"
-        android:summary="View Intent Intercept source code on github"
-        android:title="View Source Code" >
+        android:summary="@string/view_source_code_summary"
+        android:title="@string/view_source_code_title" >
         <intent
             android:action="android.intent.action.VIEW"
             android:data="https://github.com/intrications/intent-intercept" >
@@ -53,8 +53,8 @@
     </Preference>
     <Preference
         android:key="licence"
-        android:summary="Apache License, Version 2.0"
-        android:title="Licence" >
+        android:summary="@string/license_summary"
+        android:title="@string/license_title" >
         <intent
             android:action="android.intent.action.VIEW"
             android:data="http://www.apache.org/licenses/LICENSE-2.0.html" >
