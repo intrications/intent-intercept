@@ -1,13 +1,11 @@
 language: android
 script: 
-    - ./gradlew assembleDebug
+    - ./gradlew build check
 
 android:
   components:
     - build-tools-22.0.1
     - android-22
-    - extra-android-support
     - extra-android-m2repository
-    - extra-google-m2repository
-  licenses:
-    - android-sdk-license-.+
+
+sudo: false
