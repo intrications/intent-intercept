@@ -61,7 +61,8 @@ import uk.co.ashtonbrsc.android.intentintercept.R;
 //TODO add getCallingActivity() - will only give details for startActivityForResult();
 
 /**
- * This is actually an IntentEditActivity
+ * Should really be called IntentDetailsActivity but this may cause problems with launcher
+ * shortcuts and the enabled/disabled state of interception.
  */
 public class Explode extends AppCompatActivity {
 
@@ -263,10 +264,10 @@ public class Explode extends AppCompatActivity {
 			stringBuilder.append("Categories:");
 			for (String category : categories) {
 				stringBuilder.append(category).append(NEWLINE);
-				TextView text2 = new TextView(this);
-				text2.setText(category);
-				text2.setTextAppearance(this, R.style.TextFlags);
-				categoriesLayout.addView(text2);
+				TextView categoryTextView = new TextView(this);
+				categoryTextView.setText(category);
+				categoryTextView.setTextAppearance(this, R.style.TextFlags);
+				categoriesLayout.addView(categoryTextView);
 			}
 		} else {
 			categoriesHeader.setVisibility(View.GONE);
