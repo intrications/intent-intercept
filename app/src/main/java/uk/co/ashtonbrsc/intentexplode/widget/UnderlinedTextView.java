@@ -6,6 +6,7 @@ package uk.co.ashtonbrsc.intentexplode.widget;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
@@ -52,7 +53,7 @@ public class UnderlinedTextView extends TextView {
 	}
 
 	@Override
-	protected void onDraw(Canvas canvas) {
+	protected void onDraw(@NonNull Canvas canvas) {
 		super.onDraw(canvas);
 		canvas.drawRect(0, getHeight() - mUnderlineHeight, getWidth(),
 				getHeight(), mPaint);

@@ -15,6 +15,7 @@
 package uk.co.ashtonbrsc.intentexplode.widget;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.widget.EditText;
@@ -34,7 +35,7 @@ public class BlockEnterEditText extends EditText {
 	}
 
 	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
+	public boolean onKeyDown(int keyCode, @NonNull KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_ENTER) {
 			// Just ignore the [Enter] key
 			return true;

@@ -101,13 +101,12 @@ public class Explode extends AppCompatActivity {
         @Override
         public void afterTextChanged(Editable s) {
         }
-    };
+    }
 
     private static final String INTENT_EDITED = "intent_edited";
 	private static final int STANDARD_INDENT_SIZE_IN_DIP = 10;
     private static final String NEWLINE = "\n<br>";
 
-    private String intentDetailsHtml;
 	private ShareActionProvider shareActionProvider; // api-14 or compat
 	private EditText action;
 	private EditText data;
@@ -136,7 +135,7 @@ public class Explode extends AppCompatActivity {
     private String lastResultIntent = null;
 
     /** false: text-change-events are not active. */
-    protected boolean textWatchersActive;
+	private boolean textWatchersActive;
 
 	private static final Map<Integer, String> FLAGS_MAP = new HashMap<Integer, String>() {
 		{
@@ -356,7 +355,7 @@ public class Explode extends AppCompatActivity {
     }
 
     private ArrayList<String> getFlags() {
-		ArrayList<String> flagsStrings = new ArrayList<String>();
+		ArrayList<String> flagsStrings = new ArrayList<>();
 		int flags = editableIntent.getFlags();
 		Set<Entry<Integer, String>> set = FLAGS_MAP.entrySet();
 		Iterator<Entry<Integer, String>> i = set.iterator();
@@ -501,14 +500,14 @@ public class Explode extends AppCompatActivity {
         refreshUI();
 	}
 
-	public void copyIntentDetails() {
+	private void copyIntentDetails() {
 		ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
 		clipboard.setText(getIntentDetailsString());
 		Toast.makeText(this, R.string.intent_details_copied_to_clipboard,
 				Toast.LENGTH_SHORT).show();
 	}
 
-	public void refreshUI() {
+	private void refreshUI() {
 		// if (!intent.getAction().equals(getIntent().getAction())
 		// || (intent.getDataString() != null && !intent.getDataString()
 		// .equals(getIntent().getDataString()))
@@ -520,7 +519,6 @@ public class Explode extends AppCompatActivity {
 			Intent share = createShareIntent();
 			shareActionProvider.setShareIntent(share);
 		}
-		return;
 	}
 
 	private Intent createShareIntent() {
@@ -597,14 +595,13 @@ public class Explode extends AppCompatActivity {
 							|| thisObject instanceof Integer
 							|| thisObject instanceof Boolean
 							|| thisObject instanceof Uri) {
-						stringBuilder.append("Value: " + thisObject.toString())
+						stringBuilder.append("Value: ").append(thisObject.toString())
 								.append(NEWLINE);
 					} else if (thisObject instanceof ArrayList) {
 						stringBuilder.append("Values:<br>");
 						ArrayList thisArrayList = (ArrayList) thisObject;
 						for (Object thisArrayListObject : thisArrayList) {
-							stringBuilder.append(thisArrayListObject.toString()
-									+ NEWLINE);
+							stringBuilder.append(thisArrayListObject.toString()).append(NEWLINE);
 						}
 					}
 				}
@@ -626,21 +623,23 @@ public class Explode extends AppCompatActivity {
 			stringBuilder
 					.append("<br><b><u>NO ACTIVITIES MATCH THIS INTENT</u></b><br>");
 		} else {
-			stringBuilder.append("<br><b><u>" + numberOfMatchingActivities
-					+ " ACTIVITIES MATCH THIS INTENT:</u></b><br>");
+			stringBuilder.append("<br><b><u>").append(numberOfMatchingActivities)
+					.append(" ACTIVITIES MATCH THIS INTENT:</u></b><br>");
 			for (int i = 0; i <= numberOfMatchingActivities; i++) {
 				ResolveInfo info = resolveInfo.get(i);
 				ActivityInfo activityinfo = info.activityInfo;
 				if (!activityinfo.packageName.equals(getPackageName())) {
-					stringBuilder.append(activityinfo.loadLabel(pm) + " ("
-							+ activityinfo.packageName + " - "
-							+ activityinfo.name + ")<br>");
+					stringBuilder.append(activityinfo.loadLabel(pm))
+							.append(" (")
+							.append(activityinfo.packageName)
+							.append(" - ")
+							.append(activityinfo.name)
+							.append(")<br>");
 				}
 			}
 		}
 
-		intentDetailsHtml = stringBuilder.toString();
-		return Html.fromHtml(intentDetailsHtml);
+		return Html.fromHtml(stringBuilder.toString());
 	}
 
 	@Override
@@ -710,8 +709,7 @@ public class Explode extends AppCompatActivity {
     }
 
     private static String getUri(Intent src) {
-        String intentUri = (src != null) ? src.toUri(Intent.URI_INTENT_SCHEME) : null;
-        return intentUri;
+		return (src != null) ? src.toUri(Intent.URI_INTENT_SCHEME) : null;
     }
     private Intent cloneIntent(String intentUri) {
         if (intentUri != null) {
