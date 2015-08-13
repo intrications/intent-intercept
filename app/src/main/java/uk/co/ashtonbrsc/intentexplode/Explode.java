@@ -140,61 +140,61 @@ public class Explode extends AppCompatActivity {
 
 	private static final Map<Integer, String> FLAGS_MAP = new HashMap<Integer, String>() {
 		{
-			put(new Integer(Intent.FLAG_GRANT_READ_URI_PERMISSION),
+			put(Integer.valueOf(Intent.FLAG_GRANT_READ_URI_PERMISSION),
 					"FLAG_GRANT_READ_URI_PERMISSION");
-			put(new Integer(Intent.FLAG_GRANT_WRITE_URI_PERMISSION),
+			put(Integer.valueOf(Intent.FLAG_GRANT_WRITE_URI_PERMISSION),
 					"FLAG_GRANT_WRITE_URI_PERMISSION");
-			put(new Integer(Intent.FLAG_FROM_BACKGROUND),
+			put(Integer.valueOf(Intent.FLAG_FROM_BACKGROUND),
 					"FLAG_FROM_BACKGROUND");
-			put(new Integer(Intent.FLAG_DEBUG_LOG_RESOLUTION),
+			put(Integer.valueOf(Intent.FLAG_DEBUG_LOG_RESOLUTION),
 					"FLAG_DEBUG_LOG_RESOLUTION");
-			put(new Integer(Intent.FLAG_EXCLUDE_STOPPED_PACKAGES),
+			put(Integer.valueOf(Intent.FLAG_EXCLUDE_STOPPED_PACKAGES),
 					"FLAG_EXCLUDE_STOPPED_PACKAGES");
-			put(new Integer(Intent.FLAG_INCLUDE_STOPPED_PACKAGES),
+			put(Integer.valueOf(Intent.FLAG_INCLUDE_STOPPED_PACKAGES),
 					"FLAG_INCLUDE_STOPPED_PACKAGES");
-			put(new Integer(Intent.FLAG_ACTIVITY_NO_HISTORY),
+			put(Integer.valueOf(Intent.FLAG_ACTIVITY_NO_HISTORY),
 					"FLAG_ACTIVITY_NO_HISTORY");
-			put(new Integer(Intent.FLAG_ACTIVITY_SINGLE_TOP),
+			put(Integer.valueOf(Intent.FLAG_ACTIVITY_SINGLE_TOP),
 					"FLAG_ACTIVITY_SINGLE_TOP");
-			put(new Integer(Intent.FLAG_ACTIVITY_NEW_TASK),
+			put(Integer.valueOf(Intent.FLAG_ACTIVITY_NEW_TASK),
 					"FLAG_ACTIVITY_NEW_TASK");
-			put(new Integer(Intent.FLAG_ACTIVITY_MULTIPLE_TASK),
+			put(Integer.valueOf(Intent.FLAG_ACTIVITY_MULTIPLE_TASK),
 					"FLAG_ACTIVITY_MULTIPLE_TASK");
-			put(new Integer(Intent.FLAG_ACTIVITY_CLEAR_TOP),
+			put(Integer.valueOf(Intent.FLAG_ACTIVITY_CLEAR_TOP),
 					"FLAG_ACTIVITY_CLEAR_TOP");
-			put(new Integer(Intent.FLAG_ACTIVITY_FORWARD_RESULT),
+			put(Integer.valueOf(Intent.FLAG_ACTIVITY_FORWARD_RESULT),
 					"FLAG_ACTIVITY_FORWARD_RESULT");
-			put(new Integer(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP),
+			put(Integer.valueOf(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP),
 					"FLAG_ACTIVITY_PREVIOUS_IS_TOP");
-			put(new Integer(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS),
+			put(Integer.valueOf(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS),
 					"FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS");
-			put(new Integer(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT),
+			put(Integer.valueOf(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT),
 					"FLAG_ACTIVITY_BROUGHT_TO_FRONT");
-			put(new Integer(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED),
+			put(Integer.valueOf(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED),
 					"FLAG_ACTIVITY_RESET_TASK_IF_NEEDED");
-			put(new Integer(Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY),
+			put(Integer.valueOf(Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY),
 					"FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY");
-			put(new Integer(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET),
+			put(Integer.valueOf(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET),
 					"FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET");
-			put(new Integer(Intent.FLAG_ACTIVITY_NO_USER_ACTION),
+			put(Integer.valueOf(Intent.FLAG_ACTIVITY_NO_USER_ACTION),
 					"FLAG_ACTIVITY_NO_USER_ACTION");
-			put(new Integer(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT),
+			put(Integer.valueOf(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT),
 					"FLAG_ACTIVITY_REORDER_TO_FRONT");
-			put(new Integer(Intent.FLAG_ACTIVITY_NO_ANIMATION),
+			put(Integer.valueOf(Intent.FLAG_ACTIVITY_NO_ANIMATION),
 					"FLAG_ACTIVITY_NO_ANIMATION");
-			put(new Integer(Intent.FLAG_ACTIVITY_CLEAR_TASK),
+			put(Integer.valueOf(Intent.FLAG_ACTIVITY_CLEAR_TASK),
 					"FLAG_ACTIVITY_CLEAR_TASK");
-			put(new Integer(Intent.FLAG_ACTIVITY_TASK_ON_HOME),
+			put(Integer.valueOf(Intent.FLAG_ACTIVITY_TASK_ON_HOME),
 					"FLAG_ACTIVITY_TASK_ON_HOME");
-			put(new Integer(Intent.FLAG_RECEIVER_REGISTERED_ONLY),
+			put(Integer.valueOf(Intent.FLAG_RECEIVER_REGISTERED_ONLY),
 					"FLAG_RECEIVER_REGISTERED_ONLY");
-			put(new Integer(Intent.FLAG_RECEIVER_REPLACE_PENDING),
+			put(Integer.valueOf(Intent.FLAG_RECEIVER_REPLACE_PENDING),
 					"FLAG_RECEIVER_REPLACE_PENDING");
-			put(new Integer(Intent.FLAG_RECEIVER_FOREGROUND),
+			put(Integer.valueOf(Intent.FLAG_RECEIVER_FOREGROUND),
 					"FLAG_RECEIVER_FOREGROUND");
-			put(new Integer(0x08000000),
+			put(Integer.valueOf(0x08000000),
 					"FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT");
-			put(new Integer(0x04000000), "FLAG_RECEIVER_BOOT_UPGRADE");
+			put(Integer.valueOf(0x04000000), "FLAG_RECEIVER_BOOT_UPGRADE");
 		}
 	};
 
@@ -649,7 +649,6 @@ public class Explode extends AppCompatActivity {
 		MenuItem actionItem = menu.findItem(R.id.share);
 
         shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(actionItem);
-		// shareActionProvider = (ShareActionProvider) actionItem.getActionProvider(); // api-14
 
         if (shareActionProvider == null) {
             shareActionProvider = new ShareActionProvider(this);
@@ -681,7 +680,7 @@ public class Explode extends AppCompatActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		overridePendingTransition(0, 0); // inihibit new activity animation when
+		overridePendingTransition(0, 0); // inhibit new activity animation when
 											// resetting intent details
 		textWatchersActive = true;
 	}
