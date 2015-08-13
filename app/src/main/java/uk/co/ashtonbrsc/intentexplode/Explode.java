@@ -595,7 +595,8 @@ public class Explode extends AppCompatActivity {
 
 					if (thisObject instanceof String || thisObject instanceof Long
 							|| thisObject instanceof Integer
-							|| thisObject instanceof Boolean) {
+							|| thisObject instanceof Boolean
+							|| thisObject instanceof Uri) {
 						stringBuilder.append("Value: " + thisObject.toString())
 								.append(NEWLINE);
 					} else if (thisObject instanceof ArrayList) {
