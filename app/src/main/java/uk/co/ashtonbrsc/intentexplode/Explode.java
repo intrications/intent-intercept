@@ -23,7 +23,7 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
 import android.text.ClipboardManager;
 import android.text.Editable;
@@ -63,7 +63,7 @@ import uk.co.ashtonbrsc.android.intentintercept.R;
 /**
  * This is actually an IntentEditActivity
  */
-public class Explode extends ActionBarActivity {
+public class Explode extends AppCompatActivity {
 
     private abstract class IntentUpdateTextWatcher implements TextWatcher {
         private final TextView textView;
