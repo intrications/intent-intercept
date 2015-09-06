@@ -42,8 +42,9 @@ public class SettingsUtil {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 Intent intent = ShareCompat.IntentBuilder.from(activity).setChooserTitle
-                        ("Select Intent Intercept").setType("plain/text")
-                        .setText("Test Intent").createChooserIntent();
+                        (activity.getString(R.string.select_intent_intercept)).setType(activity
+                        .getString(R.string.plain_text))
+                        .setText(activity.getString(R.string.test_intent)).createChooserIntent();
                 activity.startActivity(intent);
                 return true;
             }
