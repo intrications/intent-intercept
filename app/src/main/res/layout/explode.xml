@@ -25,60 +25,60 @@
                 style="@style/TextHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ACTION" />
+                android:text="@string/action"/>
 
             <uk.co.ashtonbrsc.intentexplode.widget.BlockEnterEditText
                 android:id="@+id/action"
                 style="@style/EditTextNoSuggestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="null" />
+                android:hint="@string/null_text" />
 
             <uk.co.ashtonbrsc.intentexplode.widget.UnderlinedTextView
                 style="@style/TextHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="DATA" />
+                android:text="@string/data_upper_case" />
 
             <uk.co.ashtonbrsc.intentexplode.widget.BlockEnterEditText
                 android:id="@+id/data"
                 style="@style/EditTextNoSuggestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="null" />
+                android:hint="@string/null_text" />
 
             <uk.co.ashtonbrsc.intentexplode.widget.UnderlinedTextView
                 style="@style/TextHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TYPE" />
+                android:text="@string/type"/>
 
             <uk.co.ashtonbrsc.intentexplode.widget.BlockEnterEditText
                 android:id="@+id/type"
                 style="@style/EditTextNoSuggestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="null" />
+                android:hint="@string/null_text" />
 
             <uk.co.ashtonbrsc.intentexplode.widget.UnderlinedTextView
                 style="@style/TextHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="URI" />
+                android:text="@string/uri" />
 
             <uk.co.ashtonbrsc.intentexplode.widget.BlockEnterEditText
                 android:id="@+id/uri"
                 style="@style/EditTextNoSuggestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="null" />
+                android:hint="@string/null_text" />
 
             <uk.co.ashtonbrsc.intentexplode.widget.UnderlinedTextView
                 android:id="@+id/categories_header"
                 style="@style/TextHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="CATEGORIES" />
+                android:text="@string/categories_upper_case" />
 
             <LinearLayout
                 android:id="@+id/categories_layout"
@@ -91,7 +91,7 @@
                 style="@style/TextHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="FLAGS" />
+                android:text="@string/flags" />
 
             <LinearLayout
                 android:id="@+id/flags_layout"
@@ -103,7 +103,7 @@
                 style="@style/TextHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="EXTRAS" />
+                android:text="@string/extras" />
 
             <LinearLayout
                 android:id="@+id/extras_layout"
@@ -117,7 +117,7 @@
                 style="@style/TextHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="MATCHING ACTIVITIES" />
+                android:text="@string/matching_activities" />
 
             <LinearLayout
                 android:id="@+id/activities_layout"

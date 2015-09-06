@@ -20,5 +20,56 @@
     <string name="license_summary" translatable="false">Apache License, Version 2.0</string>
     <string name="license_title">Licence</string>
     <string name="view_source_code_title">View Source Code</string>
+    <string name="action">ACTION</string>
+    <string name="null_text">null</string>
+    <string name="data_upper_case">DATA</string>
+    <string name="type">TYPE</string>
+    <string name="uri">URI</string>
+    <string name="categories_upper_case">CATEGORIES</string>
+    <string name="flags">FLAGS</string>
+    <string name="extras">EXTRAS</string>
+    <string name="matching_activities">MATCHING ACTIVITIES</string>
     <string name="send_edited_intent_button">Send Edited Intent</string>
+    <string name="select_intent_intercept">Select Intent Intercept</string>
+    <string name="test_intent">Test Intent</string>
+    <string name="categories">Categories:</string>
+    <string name="categories_title_bold"><![CDATA[<b><u>CATEGORIES:</u></b><br>]]></string>
+    <string name="none">NONE</string>
+    <string name="bundle_title_bold"><![CDATA[<br><b><u>Bundle:</u></b><br>]]></string>
+    <string name="bundle_title_bold_uppercase"><![CDATA[<br><b><u>BUNDLE:</u></b><br>]]></string>
+    <string name="extra">EXTRA </string>
+    <plurals name="extra_count">
+        <item quantity="one"><![CDATA[<u>EXTRA: %d:</u><br>]]></item>
+        <item quantity="other"><![CDATA[<u>EXTRA: %d:</u><br>]]></item>
+    </plurals>
+    <string name="extras_title_bold"><![CDATA[<br><b><u>EXTRAS:</u></b><br>]]></string>
+    <string name="class_text">Class: </string>
+    <string name="key">Key: </string>
+    <string name="value">Value: </string>
+    <string name="values">Values: </string>
+    <string name="values_break"><![CDATA[Values:<br>]]></string>
+    <string name="error_extracting_extras">ERROR EXTRACTING EXTRAS</string>
+    <string name="error_extracting_extras_red"><![CDATA[<font color="red">Error extracting extras<br></font>]]></string>
+    <string name="no_activities_match_intent">NO ACTIVITIES MATCH THIS INTENT</string>
+    <string name="no_activities_match_intent_title_bold"><![CDATA[<br><b><u>NO ACTIVITIES MATCH THIS INTENT</u></b><br>]]></string>
+    <plurals name="activities_match_intent">
+        <item quantity="one">%d ACTIVITY MATCHES THIS INTENT</item>
+        <item quantity="other">%d ACTIVITIES MATCH THIS INTENT</item>
+    </plurals>
+    <plurals name="activites_match_intent_title_bold">
+        <item quantity="one"><![CDATA[<br><b><u>%d ACTIVITY MATCHES THIS INTENT</u></b><br>]]></item>
+        <item quantity="other"><![CDATA[<br><i><b><u>%d ACTIVITIES MATCH THIS INTENT</u></b></i><br>]]></item>
+    </plurals>
+    <string name="last_result">Last result: </string>
+    <string name="data"> Data: </string>
+    <string name="data_bold"><![CDATA[<b><u>DATA:</u></b> ]]></string>
+    <string name="action_bold"><![CDATA[<b><u>ACTION:</u></b> ]]></string>
+    <string name="type_bold"><![CDATA[<b><u>TYPE:</u></b> ]]></string>
+    <string name="flags_title_bold"><![CDATA[<br><b><u>FLAGS:</u></b><br>]]></string>
+    <string name="text_plain" translatable="false">text/plain</string>
+    <string name="plain_text" translatable="false">plain/text</string>
+    <string name="open_bracket" translatable="false"> (</string>
+    <string name="dash" translatable="false"> - </string>
+    <string name="close_bracket" translatable="false">)</string>
+    <string name="close_bracket_break" translatable="false"><![CDATA[)<br>]]></string>
 </resources>
