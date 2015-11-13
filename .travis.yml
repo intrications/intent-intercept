@@ -4,8 +4,8 @@ script:
 
 android:
   components:
-    - build-tools-22.0.1
-    - android-22
+    - build-tools-23.0.2
+    - android-23
     - extra-android-m2repository
 
 sudo: false
