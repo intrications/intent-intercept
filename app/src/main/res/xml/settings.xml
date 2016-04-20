@@ -11,7 +11,22 @@
         </intent>
     </Preference>
     <Preference
-        android:key="rateThisApp"
+        android:summary="@string/view_source_code_summary"
+        android:title="@string/view_source_code_title" >
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/intrications/intent-intercept" >
+        </intent>
+    </Preference>
+    <Preference
+        android:summary="@string/report_issue_summary"
+        android:title="@string/report_issue_title" >
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/intrications/intent-intercept/issues" >
+        </intent>
+    </Preference>
+    <Preference
         android:title="@string/rate_this_app_title" >
         <intent
             android:action="android.intent.action.VIEW"
@@ -19,7 +34,6 @@
         </intent>
     </Preference>
     <Preference
-        android:key="viewMyOtherApps"
         android:title="@string/view_my_other_apps_title" >
         <intent
             android:action="android.intent.action.VIEW"
@@ -27,7 +41,6 @@
         </intent>
     </Preference>
     <Preference
-        android:key="visitWebsite"
         android:title="@string/visit_website_title" >
         <intent
             android:action="android.intent.action.VIEW"
@@ -35,20 +48,10 @@
         </intent>
     </Preference>
     <Preference
-        android:key="visitGooglePlus"
         android:title="@string/visit_google_plus_title" >
         <intent
             android:action="android.intent.action.VIEW"
             android:data="https://plus.google.com/114248840147347624819/posts" >
-        </intent>
-    </Preference>
-    <Preference
-        android:key="viewSourceCode"
-        android:summary="@string/view_source_code_summary"
-        android:title="@string/view_source_code_title" >
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:data="https://github.com/intrications/intent-intercept" >
         </intent>
     </Preference>
     <Preference
