@@ -275,7 +275,7 @@ public class Explode extends AppCompatActivity {
 
         flagsLayout.removeAllViews();
 		ArrayList<String> flagsStrings = getFlags();
-		if (flagsStrings.size() > 0) {
+		if (!flagsStrings.isEmpty()) {
 			for (String thisFlagString : flagsStrings) {
 				addTextToLayout(thisFlagString, Typeface.NORMAL, flagsLayout);
 			}
@@ -573,7 +573,7 @@ public class Explode extends AppCompatActivity {
 
 		stringBuilder.append(getResources().getString(R.string.flags_title_bold));
 		ArrayList<String> flagsStrings = getFlags();
-		if (flagsStrings.size() > 0) {
+		if (!flagsStrings.isEmpty()) {
 			for (String thisFlagString : flagsStrings) {
 				stringBuilder.append(thisFlagString).append(NEWLINE);
 			}
