@@ -219,15 +219,15 @@ public class Explode extends AppCompatActivity {
 
         if (originalExtras != null) {
             // bugfix #14: collect extras that are lost in the intent <-> string conversion
-            Bundle additionalExtas = new Bundle(originalExtras);
+            Bundle additionalExtras = new Bundle(originalExtras);
             for (String key : originalExtras.keySet()) {
                 if (copy.hasExtra(key)) {
-                    additionalExtas.remove(key);
+                    additionalExtras.remove(key);
                 }
             }
 
-            if (!additionalExtas.isEmpty()) {
-                this.additionalExtas = additionalExtas;
+            if (!additionalExtras.isEmpty()) {
+                this.additionalExtas = additionalExtras;
             }
         }
 
