@@ -12,6 +12,9 @@ import uk.co.ashtonbrsc.android.intentintercept.R;
 
 public class SettingsUtil {
 
+    private SettingsUtil() {
+    }
+
     public static void setupSettings(final Activity activity, PreferenceManager preferenceManager) {
 
         final Preference interceptEnabledPreference = preferenceManager
