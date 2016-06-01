@@ -716,10 +716,6 @@ public class Explode extends AppCompatActivity {
         refreshUI();
     }
 
-    private Intent cloneIntent(Intent src) {
-        return cloneIntent(getUri(src));
-    }
-
     private static String getUri(Intent src) {
 		return (src != null) ? src.toUri(Intent.URI_INTENT_SCHEME) : null;
     }
