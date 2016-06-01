@@ -126,7 +126,7 @@ public class Explode extends AppCompatActivity {
 	private String originalIntent;
 
     /** Bugfix #14: extras that are lost in the intent <-> string conversion */
-    private Bundle additionalExtas;
+    private Bundle additionalExtras;
 
     private Intent editableIntent;
 
@@ -219,15 +219,15 @@ public class Explode extends AppCompatActivity {
 
         if (originalExtras != null) {
             // bugfix #14: collect extras that are lost in the intent <-> string conversion
-            Bundle additionalExtras = new Bundle(originalExtras);
+            Bundle additionalExtrasBundle = new Bundle(originalExtras);
             for (String key : originalExtras.keySet()) {
                 if (copy.hasExtra(key)) {
-                    additionalExtras.remove(key);
+                    additionalExtrasBundle.remove(key);
                 }
             }
 
-            if (!additionalExtras.isEmpty()) {
-                this.additionalExtas = additionalExtras;
+            if (!additionalExtrasBundle.isEmpty()) {
+                additionalExtras = additionalExtrasBundle;
             }
         }
 
@@ -725,8 +725,8 @@ public class Explode extends AppCompatActivity {
                 Intent clone = Intent.parseUri(intentUri, Intent.URI_INTENT_SCHEME);
 
                 // bugfix #14: restore extras that are lost in the intent <-> string conversion
-                if (additionalExtas != null) {
-                    clone.putExtras(additionalExtas);
+                if (additionalExtras != null) {
+                    clone.putExtras(additionalExtras);
                 }
 
                 return clone;
