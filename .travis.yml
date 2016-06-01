@@ -8,5 +8,6 @@ android:
     - android-23
     - platform-tools
     - extra-android-m2repository
+    - extra-android-support
 
 sudo: false
