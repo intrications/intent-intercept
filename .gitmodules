@@ -1,6 +1,0 @@
-[submodule "contrib/ActionBarSherlock"]
-	path = contrib/ActionBarSherlock
-	url = https://github.com/JakeWharton/ActionBarSherlock.git
-[submodule "contrib/android-switch-backport"]
-	path = contrib/android-switch-backport
-	url = https://github.com/intrications/android-switch-backport.git

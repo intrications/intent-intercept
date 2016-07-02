@@ -18,3 +18,18 @@ local.properties
 # Eclipse project files
 .classpath
 .project
+
+# Android Studio
+*.iws
+target
+out/
+.idea
+*.iml
+
+# Gradle
+build/
+.gradle
+
+# OS X
+.DS_Store
+/gradle-app.setting
