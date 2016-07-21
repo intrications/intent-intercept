@@ -65,8 +65,16 @@ import uk.co.ashtonbrsc.android.intentintercept.R;
  * shortcuts and the enabled/disabled state of interception.
  */
 public class Explode extends AppCompatActivity {
+	private static final String INTENT_EDITED = "intent_edited";
+	private static final int STANDARD_INDENT_SIZE_IN_DIP = 10;
+	private static final String NEWLINE = "\n<br>";
+	private static final String BLANK = " ";
 
-    private abstract class IntentUpdateTextWatcher implements TextWatcher {
+	private static final String BOLD_START = "<b><u>";
+	private static final String BOLD_END_BLANK = "</u></b>" + BLANK;
+	private static final String BOLD_END_NL = "</u></b>" + NEWLINE;
+
+	private abstract class IntentUpdateTextWatcher implements TextWatcher {
         private final TextView textView;
 
         IntentUpdateTextWatcher(TextView textView) {
@@ -102,10 +110,6 @@ public class Explode extends AppCompatActivity {
         public void afterTextChanged(Editable s) {
         }
     }
-
-    private static final String INTENT_EDITED = "intent_edited";
-	private static final int STANDARD_INDENT_SIZE_IN_DIP = 10;
-    private static final String NEWLINE = "\n<br>";
 
 	private ShareActionProvider shareActionProvider; // api-14 or compat
 	private EditText action;
@@ -260,9 +264,9 @@ public class Explode extends AppCompatActivity {
 		StringBuilder stringBuilder = new StringBuilder();
 		if (categories != null) {
             categoriesHeader.setVisibility(View.VISIBLE);
-			stringBuilder.append(getResources().getString(R.string.categories));
+			stringBuilder.append(getString(R.string.intent_categories_title)).append(NEWLINE);
 			for (String category : categories) {
-				stringBuilder.append(category).append(NEWLINE);
+				stringBuilder.append(category);
 				TextView categoryTextView = new TextView(this);
 				categoryTextView.setText(category);
 				categoryTextView.setTextAppearance(this, R.style.TextFlags);
@@ -280,42 +284,46 @@ public class Explode extends AppCompatActivity {
 				addTextToLayout(thisFlagString, Typeface.NORMAL, flagsLayout);
 			}
 		} else {
-			addTextToLayout(getResources().getString(R.string.none), Typeface.NORMAL, flagsLayout);
+			addTextToLayout(getString(R.string.no_items), Typeface.NORMAL, flagsLayout);
 		}
 
         extrasLayout.removeAllViews();
 		try {
+			stringBuilder.append(BOLD_START).append(getString(R.string.intent_extras_title)).append(BOLD_END_NL);
+
 			Bundle intentBundle = editableIntent.getExtras();
 			if (intentBundle != null) {
-				Set<String> keySet = intentBundle.keySet();
-				stringBuilder.append(getResources().getString(R.string.bundle_title_bold));
+				Set<String> extraKeys = intentBundle.keySet();
 				int count = 0;
 
-				for (String key : keySet) {
+				for (String extraKey : extraKeys) {
 					count++;
-					Object thisObject = intentBundle.get(key);
-					addTextToLayout(getResources().getString(R.string.extra) + count, Typeface.BOLD,
-							extrasLayout);
-					String thisClass = thisObject.getClass().getName();
-					if (thisClass != null) {
-						addTextToLayout(getResources().getString(R.string.class_text) + thisClass,
+					Object extraItem = intentBundle.get(extraKey);
+					String extraItemTypeName = extraItem.getClass().getName();
+
+					addTextToLayout("" + count, Typeface.BOLD, extrasLayout);
+
+					if (extraItemTypeName != null) {
+						addTextToLayout(getString(R.string.extra_item_type_name_title) + BLANK + extraItemTypeName,
 								Typeface.ITALIC,
 								STANDARD_INDENT_SIZE_IN_DIP, extrasLayout);
 					}
-					addTextToLayout(getResources().getString(R.string.key) + key, Typeface.ITALIC,
+
+					addTextToLayout(getString(R.string.extra_item_key_title) + BLANK + extraKey, Typeface.ITALIC,
 							STANDARD_INDENT_SIZE_IN_DIP, extrasLayout);
-					if (thisObject instanceof String || thisObject instanceof Long
-							|| thisObject instanceof Integer
-							|| thisObject instanceof Boolean
-							|| thisObject instanceof Uri) {
-						addTextToLayout(getResources().getString(R.string.value) + thisObject
+
+					if (extraItem instanceof String || extraItem instanceof Long
+							|| extraItem instanceof Integer
+							|| extraItem instanceof Boolean
+							|| extraItem instanceof Uri) {
+						addTextToLayout(getString(R.string.extra_item_value_title) + BLANK + extraItem
 										.toString(),
 								Typeface.ITALIC, STANDARD_INDENT_SIZE_IN_DIP,
 								extrasLayout);
-					} else if (thisObject instanceof ArrayList) {
-						addTextToLayout(getResources().getString(R.string.values), Typeface
+					} else if (extraItem instanceof ArrayList) {
+						addTextToLayout(getString(R.string.extra_item_type_name_list), Typeface
 								.ITALIC, extrasLayout);
-						ArrayList thisArrayList = (ArrayList) thisObject;
+						ArrayList thisArrayList = (ArrayList) extraItem;
 						for (Object thisArrayListObject : thisArrayList) {
 							addTextToLayout(thisArrayListObject.toString(),
 									Typeface.ITALIC, STANDARD_INDENT_SIZE_IN_DIP,
@@ -324,26 +332,15 @@ public class Explode extends AppCompatActivity {
 					}
 				}
 			} else {
-				addTextToLayout(getResources().getString(R.string.none), Typeface.NORMAL,
+				addTextToLayout(getString(R.string.no_items), Typeface.NORMAL,
 						extrasLayout);
 			}
 		} catch (Exception e) {
 			// TODO Should make this red to highlight error
-			addTextToLayout(getResources().getString(R.string.error_extracting_extras), Typeface.NORMAL, extrasLayout);
+			addTextToLayout(getString(R.string.error_extracting_extras), Typeface.NORMAL, extrasLayout);
 			e.printStackTrace();
 		}
 
-		// resolveInfo = pm.queryIntentServices(intent, 0);
-		// stringBuilder.append("<br><b><u>" + resolveInfo.size()
-		// + " services match this intent:</u></b><br>");
-		// for (int i = 0; i < resolveInfo.size(); i++) {
-		// ResolveInfo info = resolveInfo.get(i);
-		// ActivityInfo activityinfo = info.activityInfo;
-		// stringBuilder.append(activityinfo.packageName + "<br>");
-		// }
-
-		// intentDetailsHtml = stringBuilder.toString();
-		// (((TextView) findViewById(R.id.text))).setText(intentDetailsHtml);
 		refreshUI();
 	}
 
@@ -380,24 +377,24 @@ public class Explode extends AppCompatActivity {
 		List<ResolveInfo> resolveInfo = pm.queryIntentActivities(
                 editableIntent, 0);
 
+		activitiesHeader.setText(getString(R.string.intent_matching_activities_title));
+
 		// Remove Intent Intercept from matching activities
 		int numberOfMatchingActivities = resolveInfo.size() - 1;
 
 		if (numberOfMatchingActivities < 1) {
             resendIntentButton.setEnabled(false);
-			activitiesHeader.setText(getResources().getString(R.string.no_activities_match_intent));
+			addTextToLayout(getString(R.string.no_items), Typeface.NORMAL, activitiesLayout);
+
 		} else {
             resendIntentButton.setEnabled(true);
-			activitiesHeader.setText(getResources().getQuantityString(R.plurals.activities_match_intent,
-					numberOfMatchingActivities, numberOfMatchingActivities));
 			for (int i = 0; i <= numberOfMatchingActivities; i++) {
 				ResolveInfo info = resolveInfo.get(i);
 				ActivityInfo activityinfo = info.activityInfo;
 				if (!activityinfo.packageName.equals(getPackageName())) {
-					addTextToLayout(activityinfo.loadLabel(pm) + getResources().getString(R
-									.string.open_bracket)
-							+ activityinfo.packageName + getResources().getString(R.string.dash)
-							+ activityinfo.name + getResources().getString(R.string.close_bracket), Typeface
+					addTextToLayout(activityinfo.loadLabel(pm) + " ("
+							+ activityinfo.packageName + " - "
+							+ activityinfo.name + ")", Typeface
 									.NORMAL,
 							activitiesLayout);
 				}
@@ -431,12 +428,12 @@ public class Explode extends AppCompatActivity {
 		data = (EditText) findViewById(R.id.data_edit);
 		type = (EditText) findViewById(R.id.type_edit);
         uri = (EditText) findViewById(R.id.uri_edit);
-		categoriesHeader = (TextView) findViewById(R.id.categories_header);
-		categoriesLayout = (LinearLayout) findViewById(R.id.categories_layout);
-		flagsLayout = (LinearLayout) findViewById(R.id.flags_layout);
-		extrasLayout = (LinearLayout) findViewById(R.id.extras_layout);
-		activitiesHeader = (TextView) findViewById(R.id.matching_activities_header);
-		activitiesLayout = (LinearLayout) findViewById(R.id.activities_layout);
+		categoriesHeader = (TextView) findViewById(R.id.intent_categories_header);
+		categoriesLayout = (LinearLayout) findViewById(R.id.intent_categories_layout);
+		flagsLayout = (LinearLayout) findViewById(R.id.intent_flags_layout);
+		extrasLayout = (LinearLayout) findViewById(R.id.intent_extras_layout);
+		activitiesHeader = (TextView) findViewById(R.id.intent_matching_activities_header);
+		activitiesLayout = (LinearLayout) findViewById(R.id.intent_matchin_activities_layout);
 		resendIntentButton = (Button) findViewById(R.id.resend_intent_button);
 		resetIntentButton = (Button) findViewById(R.id.reset_intent_button);
 
@@ -483,7 +480,7 @@ public class Explode extends AppCompatActivity {
 	}
 
     private void showResetIntentButton(boolean visible) {
-		resendIntentButton.setText(R.string.send_edited_intent_button_label);
+		resendIntentButton.setText(R.string.button_title_send_edited_intent);
 		resetIntentButton.setVisibility((visible) ? View.VISIBLE : View.GONE);
 	}
 
@@ -510,7 +507,7 @@ public class Explode extends AppCompatActivity {
 	private void copyIntentDetails() {
 		ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
 		clipboard.setText(getIntentDetailsString());
-		Toast.makeText(this, R.string.intent_details_copied_to_clipboard,
+		Toast.makeText(this, R.string.message_intent_details_copied_to_clipboard,
 				Toast.LENGTH_SHORT).show();
 	}
 
@@ -530,7 +527,7 @@ public class Explode extends AppCompatActivity {
 
 	private Intent createShareIntent() {
 		Intent share = new Intent(Intent.ACTION_SEND);
-		share.setType(getResources().getString(R.string.mime_type_text_plain));
+		share.setType(getString(R.string.mime_type_text_plain));
 		share.putExtra(Intent.EXTRA_TEXT, getIntentDetailsString());
 		return share;
 	}
@@ -545,71 +542,70 @@ public class Explode extends AppCompatActivity {
 
         // support for onActivityResult
         if (this.lastResultCode != null) {
-            stringBuilder.append(getResources().getString(R.string.last_result)).append(this.lastResultCode
+            stringBuilder.append(getString(R.string.last_result)).append(NEWLINE).append(this.lastResultCode
 					.toString
 					());
 
             if (this.lastResultIntent != null) {
-                stringBuilder.append(getResources().getString(R.string.data))
+                stringBuilder.append(BLANK).append(getString(R.string.intent_data_title)).append(BLANK)
 						.append(lastResultIntent);
             }
             stringBuilder.append(NEWLINE);
         }
 
-        stringBuilder.append(NEWLINE).append(getResources().getString(R.string.action_bold))
+        stringBuilder.append(NEWLINE).append(BOLD_START).append(getString(R.string.intent_action_title)).append(BOLD_END_BLANK)
 				.append(editableIntent.getAction()).append(NEWLINE);
-		stringBuilder.append(getResources().getString(R.string.data_bold))
+		stringBuilder.append(BOLD_START).append(getString(R.string.intent_data_title)).append(BOLD_END_BLANK)
 				.append(editableIntent.getData()).append(NEWLINE);
-		stringBuilder.append(getResources().getString(R.string.type_bold))
+		stringBuilder.append(BOLD_START).append(getString(R.string.intent_mime_type_title)).append(BOLD_END_BLANK)
 				.append(editableIntent.getType()).append(NEWLINE);
 
 		Set<String> categories = editableIntent.getCategories();
 		if (categories != null) {
-			stringBuilder.append(getResources().getString(R.string.categories_title_bold));
+			stringBuilder.append(BOLD_START).append(getString(R.string.intent_categories_title)).append(BOLD_END_NL);
 			for (String category : categories) {
 				stringBuilder.append(category).append(NEWLINE);
 			}
 		}
 
-		stringBuilder.append(getResources().getString(R.string.flags_title_bold));
+		stringBuilder.append(BOLD_START).append(getString(R.string.intent_flags_title)).append(BOLD_END_NL);
 		ArrayList<String> flagsStrings = getFlags();
 		if (!flagsStrings.isEmpty()) {
 			for (String thisFlagString : flagsStrings) {
 				stringBuilder.append(thisFlagString).append(NEWLINE);
 			}
 		} else {
-			stringBuilder.append(getResources().getString(R.string.none)).append(NEWLINE);
+			stringBuilder.append(getString(R.string.no_items)).append(NEWLINE);
 		}
 
 		try {
 			Bundle intentBundle = editableIntent.getExtras();
 			if (intentBundle != null) {
 				Set<String> keySet = intentBundle.keySet();
-				stringBuilder.append(getResources().getString(R.string.extras_title_bold));
+				stringBuilder.append(BOLD_START).append(getString(R.string.intent_extras_title)).append(BOLD_END_NL);
 				int count = 0;
 
 				for (String key : keySet) {
 					count++;
 					Object thisObject = intentBundle.get(key);
-					stringBuilder.append(getResources().getQuantityString(R.plurals.extra_count,
-							count, count));
+					stringBuilder.append(BOLD_START).append(count).append(BOLD_END_BLANK);
 					String thisClass = thisObject.getClass().getName();
 					if (thisClass != null) {
-						stringBuilder.append(getResources().getString(R.string.class_text)).append(thisClass)
+						stringBuilder.append(getString(R.string.extra_item_type_name_title)).append(thisClass)
 								.append(NEWLINE);
 					}
-					stringBuilder.append(getResources().getString(R.string.key)).append(key).append
+					stringBuilder.append(getString(R.string.extra_item_key_title)).append(key).append
 							(NEWLINE);
 
 					if (thisObject instanceof String || thisObject instanceof Long
 							|| thisObject instanceof Integer
 							|| thisObject instanceof Boolean
 							|| thisObject instanceof Uri) {
-						stringBuilder.append(getResources().getString(R.string.value)).append(thisObject
+						stringBuilder.append(getString(R.string.extra_item_value_title)).append(thisObject
 								.toString())
 								.append(NEWLINE);
 					} else if (thisObject instanceof ArrayList) {
-						stringBuilder.append(getResources().getString(R.string.values_break));
+						stringBuilder.append(getString(R.string.extra_item_type_name_list)).append(NEWLINE);
 						ArrayList thisArrayList = (ArrayList) thisObject;
 						for (Object thisArrayListObject : thisArrayList) {
 							stringBuilder.append(thisArrayListObject.toString()).append(NEWLINE);
@@ -618,8 +614,8 @@ public class Explode extends AppCompatActivity {
 				}
 			}
 		} catch (Exception e) {
-			stringBuilder.append(getResources().getString(R.string.bundle_title_bold_uppercase));
-			stringBuilder.append(getResources().getString(R.string.error_extracting_extras_red));
+			stringBuilder.append(BOLD_START).append(getString(R.string.intent_extras_title)).append(BOLD_END_NL);
+			stringBuilder.append("<font color='red'>").append(getString(R.string.error_extracting_extras)).append("</font>").append(NEWLINE);
 			e.printStackTrace();
 		}
 
@@ -630,23 +626,21 @@ public class Explode extends AppCompatActivity {
 		// Remove Intent Intercept from matching activities
 		int numberOfMatchingActivities = resolveInfo.size() - 1;
 
+		stringBuilder.append(BOLD_START).append(getString(R.string.intent_matching_activities_title)).append(BOLD_END_NL);
 		if (numberOfMatchingActivities < 1) {
 			stringBuilder
-					.append(getResources().getString(R.string.no_activities_match_intent_title_bold));
+					.append(BOLD_START).append(getString(R.string.no_items)).append(BOLD_END_NL);
 		} else {
-			stringBuilder.append(getResources().getQuantityString(R.plurals
-					.activites_match_intent_title_bold, numberOfMatchingActivities,
-					numberOfMatchingActivities));
 			for (int i = 0; i <= numberOfMatchingActivities; i++) {
 				ResolveInfo info = resolveInfo.get(i);
 				ActivityInfo activityinfo = info.activityInfo;
 				if (!activityinfo.packageName.equals(getPackageName())) {
 					stringBuilder.append(activityinfo.loadLabel(pm))
-							.append(getResources().getString(R.string.open_bracket))
+							.append(" (")
 							.append(activityinfo.packageName)
-							.append(getResources().getString(R.string.dash))
+							.append(" - ")
 							.append(activityinfo.name)
-							.append(getResources().getString(R.string.close_bracket_break));
+							.append(")").append(NEWLINE);
 				}
 			}
 		}

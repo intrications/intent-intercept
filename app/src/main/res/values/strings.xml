@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">Intent Intercept</string>
-    <string name="resend_intent_button_label">Resend Intent</string>
-    <string name="reset_intent_button_label">Reset Intent</string>
+
     <string name="menu_share_title">Share</string>
-    <string name="intent_details_copied_to_clipboard">Intent details copied to clipboard.</string>
     <string name="menu_copy_title">Copy</string>
-    <string name="enable_intent_intercept">Enable interception</string>
+
+    <string name="button_title_resend_intent">Resend Intent</string>
+    <string name="button_title_reset_intent">Reset Intent</string>
+
+    <string name="message_intent_details_copied_to_clipboard">Intent details copied to clipboard.</string>
+    <string name="settings_enable_intent_intercept_title">Enable interception</string>
     <string name="intent_filter_label">Intercept the Intent</string>
     <string name="settings_send_test_intent_title">Send Test Intent</string>
     <string name="settings_send_test_intent_summary">Tap this then select Intent Intercept from list</string>
@@ -19,56 +22,29 @@
     <string name="settings_report_issue_summary">View issue tracker on Github</string>
     <string name="settings_license_summary" translatable="false">Apache License, Version 2.0</string>
     <string name="settings_license_title">Licence</string>
-    <string name="action_edit_label">ACTION</string>
+    <string name="intent_action_title" translatable="false">ACTION:</string>
     <string name="null_text">null</string>
-    <string name="data_edit_label">DATA</string>
-    <string name="type_edit_label">TYPE</string>
-    <string name="uri_edit_label">URI</string>
-    <string name="categories_header_label">CATEGORIES</string>
-    <string name="flags_header_label">FLAGS</string>
-    <string name="extras_header_label">EXTRAS</string>
-    <string name="matching_activities_header_label">MATCHING ACTIVITIES</string>
-    <string name="send_edited_intent_button_label">Send Edited Intent</string>
+    <string name="intent_data_title" translatable="false">DATA:</string>
+    <string name="intent_mime_type_title">TYPE:</string>
+    <string name="intent_uri_title">URI:</string>
+    <string name="intent_flags_title" translatable="false">FLAGS:</string>
+    <string name="intent_matching_activities_title">MATCHING ACTIVITIES:</string>
+    <string name="button_title_send_edited_intent">Send Edited Intent</string>
 
-    <string name="select_intent_intercept_chooser_title">Select Intent Intercept</string>
-    <string name="test_intent">Test Intent</string>
-    <string name="categories">Categories:</string>
-    <string name="categories_title_bold"><![CDATA[<b><u>CATEGORIES:</u></b><br>]]></string>
-    <string name="none">NONE</string>
-    <string name="bundle_title_bold"><![CDATA[<br><b><u>Bundle:</u></b><br>]]></string>
-    <string name="bundle_title_bold_uppercase"><![CDATA[<br><b><u>BUNDLE:</u></b><br>]]></string>
-    <string name="extra">EXTRA </string>
-    <plurals name="extra_count">
-        <item quantity="one"><![CDATA[<u>EXTRA: %d:</u><br>]]></item>
-        <item quantity="other"><![CDATA[<u>EXTRA: %d:</u><br>]]></item>
-    </plurals>
-    <string name="extras_title_bold"><![CDATA[<br><b><u>EXTRAS:</u></b><br>]]></string>
-    <string name="class_text">Class: </string>
-    <string name="key">Key: </string>
-    <string name="value">Value: </string>
-    <string name="values">Values: </string>
-    <string name="values_break"><![CDATA[Values:<br>]]></string>
+    <string name="send_test_intent_chooser_title">Select Intent Intercept</string>
+    <string name="send_test_intent_content">Test Intent</string>
+    <string name="intent_categories_title">CATEGORY:</string>
+
+    <string name="no_items">NONE</string>
+	
+	
+    <string name="intent_extras_title" translatable="false">EXTRAS</string>
+
+    <string name="extra_item_type_name_title">Class: </string>
+    <string name="extra_item_key_title">Key: </string>
+    <string name="extra_item_value_title">Value: </string>
+    <string name="extra_item_type_name_list">Values: </string>
     <string name="error_extracting_extras">ERROR EXTRACTING EXTRAS</string>
-    <string name="error_extracting_extras_red"><![CDATA[<font color="red">Error extracting extras<br></font>]]></string>
-    <string name="no_activities_match_intent">NO ACTIVITIES MATCH THIS INTENT</string>
-    <string name="no_activities_match_intent_title_bold"><![CDATA[<br><b><u>NO ACTIVITIES MATCH THIS INTENT</u></b><br>]]></string>
-    <plurals name="activities_match_intent">
-        <item quantity="one">%d ACTIVITY MATCHES THIS INTENT</item>
-        <item quantity="other">%d ACTIVITIES MATCH THIS INTENT</item>
-    </plurals>
-    <plurals name="activites_match_intent_title_bold">
-        <item quantity="one"><![CDATA[<br><b><u>%d ACTIVITY MATCHES THIS INTENT</u></b><br>]]></item>
-        <item quantity="other"><![CDATA[<br><i><b><u>%d ACTIVITIES MATCH THIS INTENT</u></b></i><br>]]></item>
-    </plurals>
     <string name="last_result">Last result: </string>
-    <string name="data"> Data: </string>
-    <string name="data_bold"><![CDATA[<b><u>DATA:</u></b> ]]></string>
-    <string name="action_bold"><![CDATA[<b><u>ACTION:</u></b> ]]></string>
-    <string name="type_bold"><![CDATA[<b><u>TYPE:</u></b> ]]></string>
-    <string name="flags_title_bold"><![CDATA[<br><b><u>FLAGS:</u></b><br>]]></string>
     <string name="mime_type_text_plain" translatable="false">text/plain</string>
-    <string name="open_bracket" translatable="false"> (</string>
-    <string name="dash" translatable="false"> - </string>
-    <string name="close_bracket" translatable="false">)</string>
-    <string name="close_bracket_break" translatable="false"><![CDATA[)<br>]]></string>
 </resources>

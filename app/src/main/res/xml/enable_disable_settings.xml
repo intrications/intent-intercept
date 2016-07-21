@@ -4,6 +4,6 @@
     <CheckBoxPreference
         android:defaultValue="true"
         android:key="interceptEnabled"
-        android:title="@string/enable_intent_intercept" />
+        android:title="@string/settings_enable_intent_intercept_title" />
 
 </PreferenceScreen>
