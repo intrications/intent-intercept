@@ -1,13 +1,21 @@
 language: android
+before_install:
+# http://stackoverflow.com/questions/33820638/travis-yml-gradlew-permission-denied
+ - chmod +x gradlew
+ 
 script: 
     - ./gradlew build check
 
 android:
   components:
-    - build-tools-23.0.1
+    # https://github.com/travis-ci/travis-ci/issues/5036
+    - tools
+
+    # values in gradle.properties and .travis must be the same
+    - build-tools-23.0.2
     - android-23
-    - platform-tools
-    - extra-android-m2repository
-    - extra-android-support
+
+    - add-on
+    - extra
 
 sudo: false
