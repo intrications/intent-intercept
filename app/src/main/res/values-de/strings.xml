@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Intent Abfänger</string>
-    <string name="copy">Kopieren</string>
-    <string name="license_title">Lizenz</string>
-    <string name="visit_website_title">intrications.com besuchen</string>
-    <string name="visit_google_plus_title">Intrications auf Google+ besuchen</string>
-    <string name="view_source_code_summary">Den \'Intent Abfänger\'-Quellcode auf GitHub ansehen</string>
-    <string name="view_my_other_apps_title">Andere Apps von Intrications ansehen</string>
+    <string name="menu_copy_title">Kopieren</string>
+    <string name="settings_license_title">Lizenz</string>
+    <string name="settings_visit_website_title">intrications.com besuchen</string>
+    <string name="settings_visit_google_plus_title">Intrications auf Google+ besuchen</string>
+    <string name="settings_view_source_code_summary">Den \'Intent Abfänger\'-Quellcode auf GitHub ansehen</string>
+    <string name="settings_view_my_other_apps_title">Andere Apps von Intrications ansehen</string>
     <string name="share_intent_details">Intent Details teilen</string>
-    <string name="share">Teilen</string>
-    <string name="send_test_intent_title">Test Intent senden</string>
-    <string name="reset_intent">Intent zurücksetzen</string>
-    <string name="resend_intent">Intent senden</string>
-    <string name="rate_this_app_title">Die App bewerten</string>
+    <string name="menu_share_title">Teilen</string>
+    <string name="settings_send_test_intent_title">Test Intent senden</string>
+    <string name="reset_intent_button_label">Intent zurücksetzen</string>
+    <string name="resend_intent_button_label">Intent senden</string>
+    <string name="settings_rate_this_app_title">Die App bewerten</string>
     <string name="enable_intent_intercept">Abfangen aktivieren</string>
     <string name="intent_details_copied_to_clipboard">Intent Details in die Zwischenablage kopiert.</string>
-    <string name="send_test_intent_summary">Hier tippen, und dann \'Intent Abfänger\' von der Liste auswählen</string>
-    <string name="view_source_code_title">Quellcode ansehen</string>
-    <string name="send_edited_intent_button">Bearbeiteten Intent senden</string>
+    <string name="settings_send_test_intent_summary">Hier tippen, und dann \'Intent Abfänger\' von der Liste auswählen</string>
+    <string name="settings_view_source_code_title">Quellcode ansehen</string>
+    <string name="send_edited_intent_button_label">Bearbeiteten Intent senden</string>
     <string name="intent_filter_label">Den Intent abfangen</string>
 </resources>

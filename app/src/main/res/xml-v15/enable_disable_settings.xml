@@ -3,7 +3,7 @@
 
     <SwitchPreference
         android:defaultValue="true"
-        android:key="@string/intercept_enable_pref"
+        android:key="interceptEnabled"
         android:title="@string/enable_intent_intercept" />
 
 </PreferenceScreen>

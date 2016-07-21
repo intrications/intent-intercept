@@ -427,15 +427,15 @@ public class Explode extends AppCompatActivity {
 	}
 
 	private void setupVariables() {
-		action = (EditText) findViewById(R.id.action);
-		data = (EditText) findViewById(R.id.data);
-		type = (EditText) findViewById(R.id.type);
-        uri = (EditText) findViewById(R.id.uri);
+		action = (EditText) findViewById(R.id.action_edit);
+		data = (EditText) findViewById(R.id.data_edit);
+		type = (EditText) findViewById(R.id.type_edit);
+        uri = (EditText) findViewById(R.id.uri_edit);
 		categoriesHeader = (TextView) findViewById(R.id.categories_header);
 		categoriesLayout = (LinearLayout) findViewById(R.id.categories_layout);
 		flagsLayout = (LinearLayout) findViewById(R.id.flags_layout);
 		extrasLayout = (LinearLayout) findViewById(R.id.extras_layout);
-		activitiesHeader = (TextView) findViewById(R.id.activities_header);
+		activitiesHeader = (TextView) findViewById(R.id.matching_activities_header);
 		activitiesLayout = (LinearLayout) findViewById(R.id.activities_layout);
 		resendIntentButton = (Button) findViewById(R.id.resend_intent_button);
 		resetIntentButton = (Button) findViewById(R.id.reset_intent_button);
@@ -483,7 +483,7 @@ public class Explode extends AppCompatActivity {
 	}
 
     private void showResetIntentButton(boolean visible) {
-		resendIntentButton.setText(R.string.send_edited_intent_button);
+		resendIntentButton.setText(R.string.send_edited_intent_button_label);
 		resetIntentButton.setVisibility((visible) ? View.VISIBLE : View.GONE);
 	}
 
@@ -530,7 +530,7 @@ public class Explode extends AppCompatActivity {
 
 	private Intent createShareIntent() {
 		Intent share = new Intent(Intent.ACTION_SEND);
-		share.setType(getResources().getString(R.string.text_plain));
+		share.setType(getResources().getString(R.string.mime_type_text_plain));
 		share.putExtra(Intent.EXTRA_TEXT, getIntentDetailsString());
 		return share;
 	}
@@ -657,7 +657,7 @@ public class Explode extends AppCompatActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.menu, menu);
-		MenuItem actionItem = menu.findItem(R.id.share);
+		MenuItem actionItem = menu.findItem(R.id.menu_share);
 
         shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(actionItem);
 
@@ -675,7 +675,7 @@ public class Explode extends AppCompatActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.copy:
+		case R.id.menu_copy:
 			copyIntentDetails();
 			break;
 		}
