@@ -25,63 +25,63 @@
                 style="@style/TextHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/action"/>
+                android:text="@string/intent_action_title"/>
 
             <uk.co.ashtonbrsc.intentexplode.widget.BlockEnterEditText
-                android:id="@+id/action"
+                android:id="@+id/action_edit"
                 style="@style/EditTextNoSuggestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/null_text" />
+                android:hint="@string/no_value_text" />
 
             <uk.co.ashtonbrsc.intentexplode.widget.UnderlinedTextView
                 style="@style/TextHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/data_upper_case" />
+                android:text="@string/intent_data_title" />
 
             <uk.co.ashtonbrsc.intentexplode.widget.BlockEnterEditText
-                android:id="@+id/data"
+                android:id="@+id/data_edit"
                 style="@style/EditTextNoSuggestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/null_text" />
+                android:hint="@string/no_value_text" />
 
             <uk.co.ashtonbrsc.intentexplode.widget.UnderlinedTextView
                 style="@style/TextHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/type"/>
+                android:text="@string/intent_mime_type_title"/>
 
             <uk.co.ashtonbrsc.intentexplode.widget.BlockEnterEditText
-                android:id="@+id/type"
+                android:id="@+id/type_edit"
                 style="@style/EditTextNoSuggestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/null_text" />
+                android:hint="@string/no_value_text" />
 
             <uk.co.ashtonbrsc.intentexplode.widget.UnderlinedTextView
                 style="@style/TextHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/uri" />
+                android:text="@string/intent_uri_title" />
 
             <uk.co.ashtonbrsc.intentexplode.widget.BlockEnterEditText
-                android:id="@+id/uri"
+                android:id="@+id/uri_edit"
                 style="@style/EditTextNoSuggestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/null_text" />
+                android:hint="@string/no_value_text" />
 
             <uk.co.ashtonbrsc.intentexplode.widget.UnderlinedTextView
-                android:id="@+id/categories_header"
+                android:id="@+id/intent_categories_header"
                 style="@style/TextHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/categories_upper_case" />
+                android:text="@string/intent_categories_title" />
 
             <LinearLayout
-                android:id="@+id/categories_layout"
+                android:id="@+id/intent_categories_layout"
                 style="@style/ListLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -91,10 +91,10 @@
                 style="@style/TextHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/flags" />
+                android:text="@string/intent_flags_title" />
 
             <LinearLayout
-                android:id="@+id/flags_layout"
+                android:id="@+id/intent_flags_layout"
                 style="@style/ListLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -103,24 +103,24 @@
                 style="@style/TextHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/extras" />
+                android:text="@string/intent_extras_title" />
 
             <LinearLayout
-                android:id="@+id/extras_layout"
+                android:id="@+id/intent_extras_layout"
                 style="@style/ListLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
 
             <uk.co.ashtonbrsc.intentexplode.widget.UnderlinedTextView
-                android:id="@+id/activities_header"
+                android:id="@+id/intent_matching_activities_header"
                 style="@style/TextHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/matching_activities" />
+                android:text="@string/intent_matching_activities_title" />
 
             <LinearLayout
-                android:id="@+id/activities_layout"
+                android:id="@+id/intent_matchin_activities_layout"
                 style="@style/ListLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -148,7 +148,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="onResetIntent"
-            android:text="@string/reset_intent"
+            android:text="@string/button_title_reset_intent"
             android:visibility="gone" />
 
         <Button
@@ -158,7 +158,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="onSendIntent"
-            android:text="@string/resend_intent" />
+            android:text="@string/button_title_resend_intent" />
     </LinearLayout>
 
 </LinearLayout>
