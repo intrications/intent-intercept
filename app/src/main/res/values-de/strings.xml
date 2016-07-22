@@ -25,4 +25,13 @@
 
     <string name="intent_filter_label">Den Intent abfangen</string>
     <string name="error_extracting_extras">Kann Extras nicht lesen</string>
+    <string name="settings_report_issue_summary">Issue Tracker auf Github öffnen</string>
+    <string name="send_test_intent_content">Test Intent</string>
+    <string name="send_test_intent_chooser_title">Wähle: \'Den Intent abfangen\'</string>
+    <string name="no_items">keine</string>
+    <string name="extra_item_key_title">Key:</string>
+    <string name="extra_item_type_name_list">Liste:</string>
+    <string name="extra_item_value_title">Wert:</string>
+    <string name="extra_item_type_name_title">Typ:</string>
+    <string name="intent_matching_activities_title">AUFRUFBARE ACTIVITIES</string>
 </resources>

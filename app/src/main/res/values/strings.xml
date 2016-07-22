@@ -20,31 +20,29 @@
     <string name="settings_view_source_code_summary">View Intent Intercept source code on Github</string>
     <string name="settings_report_issue_title">Report issue</string>
     <string name="settings_report_issue_summary">View issue tracker on Github</string>
-    <string name="settings_license_summary" translatable="false">Apache License, Version 2.0</string>
     <string name="settings_license_title">Licence</string>
-    <string name="intent_action_title" translatable="false">ACTION:</string>
-    <string name="null_text">null</string>
-    <string name="intent_data_title" translatable="false">DATA:</string>
-    <string name="intent_mime_type_title">TYPE:</string>
+    <string name="intent_action_title">ACTION:</string>
+    <string name="intent_data_title">DATA:</string>
+    <string name="intent_mime_type_title">MIME:</string>
     <string name="intent_uri_title">URI:</string>
-    <string name="intent_flags_title" translatable="false">FLAGS:</string>
+    <string name="intent_flags_title">FLAGS:</string>
     <string name="intent_matching_activities_title">MATCHING ACTIVITIES:</string>
     <string name="button_title_send_edited_intent">Send Edited Intent</string>
 
-    <string name="send_test_intent_chooser_title">Select Intent Intercept</string>
+    <string name="send_test_intent_chooser_title">Select \'Intercept the Intent\'</string>
     <string name="send_test_intent_content">Test Intent</string>
     <string name="intent_categories_title">CATEGORY:</string>
 
-    <string name="no_items">NONE</string>
+    <string name="no_items">none</string>
 	
 	
-    <string name="intent_extras_title" translatable="false">EXTRAS</string>
+    <string name="intent_extras_title">EXTRAS:</string>
 
     <string name="extra_item_type_name_title">Class: </string>
     <string name="extra_item_key_title">Key: </string>
     <string name="extra_item_value_title">Value: </string>
-    <string name="extra_item_type_name_list">Values: </string>
-    <string name="error_extracting_extras">ERROR EXTRACTING EXTRAS</string>
-    <string name="last_result">Last result: </string>
-    <string name="mime_type_text_plain" translatable="false">text/plain</string>
+    <string name="extra_item_type_name_list">List:</string>
+    <string name="error_extracting_extras">Error extracting Extras</string>
+    <string name="last_result_header_title">onActivityResult:</string>
+    <string name="last_result_code_title">resultCode:</string>
 </resources>

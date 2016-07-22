@@ -32,7 +32,7 @@
                 style="@style/EditTextNoSuggestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/null_text" />
+                android:hint="@string/no_value_text" />
 
             <uk.co.ashtonbrsc.intentexplode.widget.UnderlinedTextView
                 style="@style/TextHeader"
@@ -45,7 +45,7 @@
                 style="@style/EditTextNoSuggestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/null_text" />
+                android:hint="@string/no_value_text" />
 
             <uk.co.ashtonbrsc.intentexplode.widget.UnderlinedTextView
                 style="@style/TextHeader"
@@ -58,7 +58,7 @@
                 style="@style/EditTextNoSuggestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/null_text" />
+                android:hint="@string/no_value_text" />
 
             <uk.co.ashtonbrsc.intentexplode.widget.UnderlinedTextView
                 style="@style/TextHeader"
@@ -71,7 +71,7 @@
                 style="@style/EditTextNoSuggestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/null_text" />
+                android:hint="@string/no_value_text" />
 
             <uk.co.ashtonbrsc.intentexplode.widget.UnderlinedTextView
                 android:id="@+id/intent_categories_header"
