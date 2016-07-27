@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <Preference
-        android:key="sendTestIntent"
+        android:key="@string/pref_send_test_intent"
         android:title="@string/settings_send_test_intent_title"
         android:summary="@string/settings_send_test_intent_summary">
         <intent
@@ -55,7 +55,6 @@
         </intent>
     </Preference>
     <Preference
-        android:key="licence"
         android:summary="@string/settings_license_summary"
         android:title="@string/settings_license_title" >
         <intent

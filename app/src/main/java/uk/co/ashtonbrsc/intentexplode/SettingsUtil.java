@@ -18,7 +18,7 @@ public class SettingsUtil {
     public static void setupSettings(final Activity activity, PreferenceManager preferenceManager) {
 
         final Preference interceptEnabledPreference = preferenceManager
-                .findPreference("interceptEnabled");
+                .findPreference(activity.getString(R.string.pref_intercept_enabled));
 
         interceptEnabledPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
 
@@ -39,7 +39,7 @@ public class SettingsUtil {
         });
 
         Preference sendTestIntentPreference = preferenceManager
-                .findPreference("sendTestIntent");
+                .findPreference(activity.getString(R.string.pref_send_test_intent));
         sendTestIntentPreference.setOnPreferenceClickListener(new Preference
                 .OnPreferenceClickListener() {
             @Override
