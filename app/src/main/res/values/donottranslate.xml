@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    resources that should NOT be localized and are version independant
+-->
+<resources>
+    <string name="settings_license_summary" translatable="false">Apache License, Version 2.0</string>
+    <string name="no_value_text" translatable="false">null</string>
+    <string name="last_result_message" translatable="false">%s: %s (%s)</string>
+    <string name="mime_type_text_plain" translatable="false">text/plain</string>
+
+    <string name="pref_send_test_intent">sendTestIntent</string>
+    <string name="pref_intercept_enabled">interceptEnabled</string>
+</resources>

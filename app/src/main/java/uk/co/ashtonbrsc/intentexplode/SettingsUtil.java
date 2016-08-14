@@ -18,7 +18,7 @@ public class SettingsUtil {
     public static void setupSettings(final Activity activity, PreferenceManager preferenceManager) {
 
         final Preference interceptEnabledPreference = preferenceManager
-                .findPreference(activity.getString(R.string.intercept_enable_pref));
+                .findPreference(activity.getString(R.string.pref_intercept_enabled));
 
         interceptEnabledPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
 
@@ -39,15 +39,15 @@ public class SettingsUtil {
         });
 
         Preference sendTestIntentPreference = preferenceManager
-                .findPreference(activity.getString(R.string.send_test_intent_pref));
+                .findPreference(activity.getString(R.string.pref_send_test_intent));
         sendTestIntentPreference.setOnPreferenceClickListener(new Preference
                 .OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 Intent intent = ShareCompat.IntentBuilder.from(activity).setChooserTitle
-                        (activity.getString(R.string.select_intent_intercept)).setType(activity
-                        .getString(R.string.plain_text))
-                        .setText(activity.getString(R.string.test_intent)).createChooserIntent();
+                        (activity.getString(R.string.send_test_intent_chooser_title)).setType(activity
+                        .getString(R.string.mime_type_text_plain))
+                        .setText(activity.getString(R.string.send_test_intent_content)).createChooserIntent();
                 activity.startActivity(intent);
                 return true;
             }
