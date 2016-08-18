@@ -40,6 +40,28 @@
                 <data android:scheme="javascript" />
                 <data android:scheme="mailto" />
                 <data android:scheme="geo" />
+
+                <data android:scheme="rtsp" />
+                <data android:scheme="rtmp" />
+                <data android:scheme="ftp" />
+                <data android:scheme="sftp" />
+
+                <data android:scheme="skype" />
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+                <data android:scheme="mms" />
+                <data android:scheme="mmsto" />
+                <data android:scheme="spotify" />
+                <data android:scheme="tel" />
+                <data android:scheme="voicemail" />
+                <data android:scheme="view-source" />
+                <data android:scheme="sqlite" />
+
+                <!-- Intercept Google play links -->
+                <data android:scheme="market" />
+                <data android:scheme="store" />
+                <data android:scheme="android" />
+
                 <!-- <data android:scheme="" /> -->
             </intent-filter>
             <intent-filter android:label="@string/intent_filter_label">
