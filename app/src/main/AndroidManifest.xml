@@ -40,6 +40,7 @@
                 <data android:scheme="javascript" />
                 <data android:scheme="mailto" />
                 <data android:scheme="geo" />
+                <data android:scheme="file" />
 
                 <data android:scheme="rtsp" />
                 <data android:scheme="rtmp" />
@@ -62,7 +63,6 @@
                 <data android:scheme="store" />
                 <data android:scheme="android" />
 
-                <!-- <data android:scheme="" /> -->
             </intent-filter>
             <intent-filter android:label="@string/intent_filter_label">
                 <action android:name="android.intent.action.PICK" >
