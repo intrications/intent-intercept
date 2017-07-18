@@ -122,7 +122,7 @@ public class Explode extends AppCompatActivity {
 	private EditText type;
     private EditText uri;
 	
-	private HistoryEditText mHistory;
+	private HistoryEditText mHistory = null;
 
 	private TextView categoriesHeader;
 	private LinearLayout categoriesLayout;
@@ -221,7 +221,7 @@ public class Explode extends AppCompatActivity {
                 && savedInstanceState.getBoolean(INTENT_EDITED);
         showInitialIntent(isVisible);
 
-		mHistory.saveHistory();
+		if (mHistory != null) mHistory.saveHistory();
 
 	}
 
@@ -438,16 +438,18 @@ public class Explode extends AppCompatActivity {
 		data = (EditText) findViewById(R.id.data_edit);
 		type = (EditText) findViewById(R.id.type_edit);
         uri = (EditText) findViewById(R.id.uri_edit);
-		
-		mHistory = new HistoryEditText(this, new int[] {
-				R.id.cmd_edit_history,
-				R.id.cmd_data_history,
-				R.id.cmd_type_history,
-				R.id.cmd_uri_history} ,
-				action,
-				data,
-				type,
-				uri);
+
+		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
+			mHistory = new HistoryEditText(this, new int[]{
+					R.id.cmd_edit_history,
+					R.id.cmd_data_history,
+					R.id.cmd_type_history,
+					R.id.cmd_uri_history},
+					action,
+					data,
+					type,
+					uri);
+		}
 
 		categoriesHeader = (TextView) findViewById(R.id.intent_categories_header);
 		categoriesLayout = (LinearLayout) findViewById(R.id.intent_categories_layout);
@@ -734,7 +736,7 @@ public class Explode extends AppCompatActivity {
 		super.onSaveInstanceState(outState);
 		outState.putBoolean(INTENT_EDITED,
 				resetIntentButton.getVisibility() == View.VISIBLE);
-		mHistory.saveHistory();
+		if (mHistory != null) mHistory.saveHistory();
 	}
 
     // support for onActivityResult

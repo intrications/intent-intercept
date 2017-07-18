@@ -5,7 +5,9 @@ package uk.co.ashtonbrsc.intentexplode.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.widget.TextView;
@@ -17,17 +19,25 @@ public class UnderlinedTextView extends TextView {
 
 	public UnderlinedTextView(Context context) {
 		super(context);
-		mPaint.setColor(getResources().getColor(android.R.color.holo_blue_light));
+		initColor();
 	}
 
 	public UnderlinedTextView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		mPaint.setColor(getResources().getColor(android.R.color.holo_blue_light));
+		initColor();
 	}
 
 	public UnderlinedTextView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		mPaint.setColor(getResources().getColor(android.R.color.holo_blue_light));
+		initColor();
+	}
+
+	private void initColor() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+			mPaint.setColor(getResources().getColor(android.R.color.holo_blue_light));
+		} else {
+			mPaint.setColor(Color.BLUE & Color.LTGRAY);
+		}
 	}
 
 	@Override
