@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.3'
+        classpath 'com.android.tools.build:gradle:2.3.1'
     }
 }
 
@@ -13,4 +13,13 @@ allprojects {
     repositories {
         jcenter()
     }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+// download and generate gradlew which is not part of this repository and is required by travis
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.3'
 }

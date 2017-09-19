@@ -1,14 +1,19 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    compileSdkVersion 23
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
-        versionCode 225
-        versionName "2.2.5"
         minSdkVersion 9
-        targetSdkVersion 24
+        targetSdkVersion 23
+		
+		applicationId 'de.k3b.android.intentintercept'
+		
+		// 2.2.5 (225) last version from uk.co.ashtonbrsc.android.intentintercept from august 2016
+		// 3.0.0 (300) first version from de.k3b.android.intentintercept from september 2017
+        versionCode 300
+        versionName "3.0.0"
     }
     buildTypes {
         release {
@@ -27,5 +32,5 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:24.2.0'
+    compile 'com.android.support:appcompat-v7:23.2.1'
 }
