@@ -19,6 +19,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
@@ -35,12 +36,14 @@ import android.text.TextWatcher;
 import android.text.style.LeadingMarginSpan;
 import android.text.style.ParagraphStyle;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
@@ -59,7 +62,6 @@ import de.k3b.android.widget.HistoryEditText;
 import uk.co.ashtonbrsc.android.intentintercept.R;
 
 //TODO add icon -which icon - app icons???
-//TODO add bitmaps/images (from intent extras?)
 //TODO add getCallingActivity() - will only give details for startActivityForResult();
 
 /**
@@ -329,7 +331,12 @@ public class Explode extends AppCompatActivity {
 										Typeface.ITALIC, STANDARD_INDENT_SIZE_IN_DIP,
 										extrasLayout);
 							}
-						} else {
+						} else if(extraItem instanceof Bitmap) {
+							addBitmapToLayout(getString(R.string.extra_item_value_title) + BLANK,
+									Typeface.ITALIC, STANDARD_INDENT_SIZE_IN_DIP,
+									(Bitmap) extraItem, extrasLayout);
+						}
+						else {
 							addTextToLayout(getString(R.string.extra_item_value_title) + BLANK + extraItem
 											.toString(),
 									Typeface.ITALIC, STANDARD_INDENT_SIZE_IN_DIP,
@@ -407,6 +414,39 @@ public class Explode extends AppCompatActivity {
 				}
 			}
 		}
+	}
+
+	private void addBitmapToLayout(String text, int typeface, int paddingLeft, Bitmap bitmap, LinearLayout linearLayout) {
+		LinearLayout bitmapLayout = new LinearLayout(this);
+		TextView textView = new TextView(this);
+		ParagraphStyle style_para = new LeadingMarginSpan.Standard(0,
+				(int) (STANDARD_INDENT_SIZE_IN_DIP * density));
+		SpannableString styledText = new SpannableString(text);
+		styledText.setSpan(style_para, 0, styledText.length(),
+				Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+		textView.setText(styledText);
+		textView.setTextAppearance(this, R.style.TextFlags);
+		textView.setTypeface(null, typeface);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			textView.setTextIsSelectable(true);
+		}
+		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT,
+				LayoutParams.WRAP_CONTENT);
+		params.setMargins((int) (paddingLeft * density), 0, 0, 0);
+
+		// At most 144dsp.
+		float maxHeight = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 144, getResources().getDisplayMetrics());
+		int height = (int) Math.min(bitmap.getHeight(), maxHeight);
+		int width = bitmap.getWidth() * (height/bitmap.getHeight());
+
+		LinearLayout.LayoutParams bitmapParams = new LayoutParams(width, height);
+		ImageView bitmapView = new ImageView(this);
+		bitmapView.setImageBitmap(bitmap);
+		bitmapView.setBackgroundResource(R.drawable.checkerboard_pattern);
+		bitmapLayout.setOrientation(LinearLayout.HORIZONTAL);
+		bitmapLayout.addView(textView);
+		bitmapLayout.addView(bitmapView, bitmapParams);
+		linearLayout.addView(bitmapLayout, params);
 	}
 
 	private void addTextToLayout(String text, int typeface, int paddingLeft,
