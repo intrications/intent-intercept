@@ -7,7 +7,15 @@
     <string name="no_value_text" translatable="false">null</string>
     <string name="last_result_message" translatable="false">%s: %s (%s)</string>
     <string name="mime_type_text_plain" translatable="false">text/plain</string>
+    <string name="intent_action_title" translatable="false">ACTION:</string>
+    <string name="intent_data_title" translatable="false">DATA:</string>
+    <string name="intent_mime_type_title" translatable="false">MIME:</string>
+    <string name="intent_uri_title" translatable="false">URI:</string>
+    <string name="intent_flags_title" translatable="false">FLAGS:</string>
+    <string name="intent_categories_title" translatable="false">CATEGORY:</string>
+    <string name="intent_extras_title" translatable="false">EXTRAS:</string>
+    <string name="last_result_header_title" translatable="false">onActivityResult:</string>
 
-    <string name="pref_send_test_intent">sendTestIntent</string>
-    <string name="pref_intercept_enabled">interceptEnabled</string>
+    <string name="pref_send_test_intent" translatable="false">sendTestIntent</string>
+    <string name="pref_intercept_enabled" translatable="false">interceptEnabled</string>
 </resources>

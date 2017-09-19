@@ -12,36 +12,23 @@
     <string name="intent_filter_label">Intercept the Intent</string>
     <string name="settings_send_test_intent_title">Send Test Intent</string>
     <string name="settings_send_test_intent_summary">Tap this then select Intent Intercept from list</string>
-    <string name="settings_rate_this_app_title">Rate This App</string>
-    <string name="settings_view_my_other_apps_title">View other apps by Intrications</string>
-    <string name="settings_visit_website_title">Visit intrications.com</string>
-    <string name="settings_visit_google_plus_title">Visit Intrications on Google+</string>
     <string name="settings_view_source_code_title">View Source Code</string>
     <string name="settings_view_source_code_summary">View Intent Intercept source code on Github</string>
     <string name="settings_report_issue_title">Report issue</string>
     <string name="settings_report_issue_summary">View issue tracker on Github</string>
     <string name="settings_license_title">Licence</string>
-    <string name="intent_action_title">ACTION:</string>
-    <string name="intent_data_title">DATA:</string>
-    <string name="intent_mime_type_title">MIME:</string>
-    <string name="intent_uri_title">URI:</string>
-    <string name="intent_flags_title">FLAGS:</string>
     <string name="intent_matching_activities_title">MATCHING ACTIVITIES:</string>
     <string name="button_title_send_edited_intent">Send Edited Intent</string>
 
     <string name="send_test_intent_chooser_title">Select \'Intercept the Intent\'</string>
     <string name="send_test_intent_content">Test Intent</string>
-    <string name="intent_categories_title">CATEGORY:</string>
 
     <string name="no_items">none</string>
-	
-    <string name="intent_extras_title">EXTRAS:</string>
 
     <string name="extra_item_type_name_title">Class: </string>
     <string name="extra_item_key_title">Key: </string>
     <string name="extra_item_value_title">Value: </string>
     <string name="extra_item_type_name_list">List:</string>
     <string name="error_extracting_extras">Error extracting Extras</string>
-    <string name="last_result_header_title">onActivityResult:</string>
     <string name="last_result_code_title">resultCode:</string>
 </resources>
