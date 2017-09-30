@@ -327,8 +327,49 @@ public class Explode extends AppCompatActivity {
 							addBitmapToLayout(getString(R.string.extra_item_value_title) + BLANK,
 									Typeface.ITALIC, STANDARD_INDENT_SIZE_IN_DIP,
 									(Bitmap) extraItem, extrasLayout);
-						}
-						else {
+						} else if(extraItem instanceof Bundle) {
+							Bundle bundle = (Bundle) extraItem;
+							StringBuilder stringBuilder = new StringBuilder("Bundle{");
+							for (String key : bundle.keySet()) {
+								stringBuilder
+										.append("\n ")
+										.append(key)
+										.append(": ")
+										.append(bundle.get(key));
+							}
+							stringBuilder.append("\n}");
+							addTextToLayout(getString(R.string.extra_item_value_title) + BLANK + stringBuilder
+											.toString(),
+									Typeface.ITALIC, STANDARD_INDENT_SIZE_IN_DIP,
+									extrasLayout);
+						} else if(extraItem.getClass().isArray()) {
+							// Item is an array, preview first 20 elements.
+							Object[] items = (Object[]) extraItem;
+							int max = Math.min(items.length, 20);
+							StringBuilder stringBuilder = new StringBuilder(extraItem.getClass().getComponentType().getSimpleName());
+							stringBuilder
+									.append('[').append(items.length).append("]{");
+							for (int i = 0; i < max; i++) {
+								stringBuilder
+										.append("\n ")
+										.append(i)
+										.append(": ")
+										.append(items[i]);
+							}
+							if(max < items.length) {
+								// preview of the end of the array.
+								stringBuilder
+										.append("\n...\n ")
+										.append(items.length - 1)
+										.append(": ")
+										.append(items[items.length -1]);
+							}
+							stringBuilder.append("\n}");
+							addTextToLayout(getString(R.string.extra_item_value_title) + BLANK + stringBuilder
+											.toString(),
+									Typeface.ITALIC, STANDARD_INDENT_SIZE_IN_DIP,
+									extrasLayout);
+						} else {
 							addTextToLayout(getString(R.string.extra_item_value_title) + BLANK + extraItem
 											.toString(),
 									Typeface.ITALIC, STANDARD_INDENT_SIZE_IN_DIP,
