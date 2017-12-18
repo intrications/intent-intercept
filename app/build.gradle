@@ -12,8 +12,9 @@ android {
 		
 		// 2.2.5 (225) last version from uk.co.ashtonbrsc.android.intentintercept from august 2016
 		// 3.0.0 (300) first version from de.k3b.android.intentintercept from september 2017
-        versionCode 300
-        versionName "3.0.0"
+		// 3.0.1 (301) 2017-09-30 merged changes from "codebymikey": intercepting media links; quick previews of Bundle and array object entries
+        versionCode 301
+        versionName "3.0.1"
     }
     buildTypes {
         release {
