@@ -12,6 +12,10 @@ This app attempts to intercept as many intents as possible in order to examine
 their contents. This helps when trying to develop an app that reacts to a
 particular intent.
 
+# ![](https://raw.githubusercontent.com/k3b/intent-intercept/master/fastlane/metadata/android/en-US/images/featureGraphic.png)
+
+# ![](https://raw.githubusercontent.com/k3b/intent-intercept/master/fastlane/metadata/android/en-US/images/phoneScreenshots/1-Intercept.png)
+
 Some details of the intent can be edited before resending it.
 
 Intent Intercept is available here:
