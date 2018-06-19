@@ -26,3 +26,6 @@ Intent Intercept is available here:
 ## License
 Apache License, Version 2.0
 [http://www.apache.org/licenses/LICENSE-2.0.html](http://www.apache.org/licenses/LICENSE-2.0.html)
+
+## See also
+There is a similar devtool [ContentProviderHelper](https://github.com/k3b/ContentProviderHelper/) to analyse android Content Provider
