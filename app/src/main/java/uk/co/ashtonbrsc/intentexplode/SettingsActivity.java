@@ -17,8 +17,8 @@ package uk.co.ashtonbrsc.intentexplode;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
+import androidx.appcompat.app.AppCompatActivity;
 import uk.co.ashtonbrsc.android.intentintercept.R;
 
 public class SettingsActivity extends AppCompatActivity {

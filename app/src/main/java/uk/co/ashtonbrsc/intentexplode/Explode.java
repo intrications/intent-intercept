@@ -24,9 +24,6 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ShareActionProvider;
 import android.text.ClipboardManager;
 import android.text.Editable;
 import android.text.Html;
@@ -58,6 +55,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ShareActionProvider;
+import androidx.core.view.MenuItemCompat;
 import de.k3b.android.widget.HistoryEditText;
 import uk.co.ashtonbrsc.android.intentintercept.R;
 

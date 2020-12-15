@@ -8,11 +8,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.util.AttributeSet;
-import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatTextView;
 
-public class UnderlinedTextView extends TextView {
+import android.util.AttributeSet;
+
+public class UnderlinedTextView extends AppCompatTextView {
 
 	private final Paint mPaint = new Paint();
 	private int mUnderlineHeight = 2;

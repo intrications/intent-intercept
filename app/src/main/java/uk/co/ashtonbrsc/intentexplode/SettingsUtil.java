@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
-import android.support.v4.app.ShareCompat;
 
+import androidx.core.app.ShareCompat;
 import uk.co.ashtonbrsc.android.intentintercept.R;
 
 public class SettingsUtil {

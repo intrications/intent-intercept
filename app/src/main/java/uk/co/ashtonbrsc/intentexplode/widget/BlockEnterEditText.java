@@ -15,12 +15,13 @@
 package uk.co.ashtonbrsc.intentexplode.widget;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatEditText;
+
 import android.util.AttributeSet;
 import android.view.KeyEvent;
-import android.widget.EditText;
 
-public class BlockEnterEditText extends EditText {
+public class BlockEnterEditText extends AppCompatEditText {
 
 	public BlockEnterEditText(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
