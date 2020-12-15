@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="vertical"
-    android:showDividers="middle"
-    tools:ignore="NewApi" >
+    android:showDividers="middle">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -40,6 +38,7 @@
 				android:layout_below="@+id/lbl_action"
 				android:visibility="gone"
 				android:background="@android:drawable/ic_menu_more" />
+
 			<uk.co.ashtonbrsc.intentexplode.widget.BlockEnterEditText
 					android:id="@+id/action_edit"
 					style="@style/EditTextNoSuggestion"
@@ -71,6 +70,7 @@
 				android:layout_below="@+id/lbl_data"
 				android:visibility="gone"
 				android:background="@android:drawable/ic_menu_more"  />
+
 			<uk.co.ashtonbrsc.intentexplode.widget.BlockEnterEditText
 					android:id="@+id/data_edit"
 					style="@style/EditTextNoSuggestion"
@@ -153,7 +153,7 @@
 				android:layout_below="@+id/uri_edit"
                 android:text="@string/intent_categories_title" />
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/intent_categories_layout"
                 style="@style/ListLayout"
                 android:layout_width="match_parent"
@@ -173,7 +173,7 @@
 				android:layout_below="@+id/intent_categories_layout"
                 android:text="@string/intent_flags_title" />
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/intent_flags_layout"
                 style="@style/ListLayout"
                 android:layout_width="match_parent"
@@ -192,7 +192,7 @@
 				android:layout_below="@+id/intent_flags_layout"
                 android:text="@string/intent_extras_title" />
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/intent_extras_layout"
                 style="@style/ListLayout"
                 android:layout_width="match_parent"
@@ -212,7 +212,7 @@
 				android:layout_below="@+id/intent_extras_layout"
                 android:text="@string/intent_matching_activities_title" />
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/intent_matchin_activities_layout"
                 style="@style/ListLayout"
                 android:layout_width="match_parent"
@@ -233,7 +233,7 @@
         </RelativeLayout>
     </ScrollView>
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         style="?android:attr/buttonBarStyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -258,6 +258,6 @@
             android:layout_weight="1"
             android:onClick="onSendIntent"
             android:text="@string/button_title_resend_intent" />
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

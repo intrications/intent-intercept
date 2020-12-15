@@ -41,8 +41,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,6 +54,7 @@ import java.util.Set;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.appcompat.widget.ShareActionProvider;
 import androidx.core.view.MenuItemCompat;
 import de.k3b.android.widget.HistoryEditText;
@@ -127,10 +126,10 @@ public class Explode extends AppCompatActivity {
 	private HistoryEditText mHistory = null;
 
 	private TextView categoriesHeader;
-	private LinearLayout categoriesLayout;
-	private LinearLayout flagsLayout;
-	private LinearLayout extrasLayout;
-	private LinearLayout activitiesLayout;
+	private LinearLayoutCompat categoriesLayout;
+	private LinearLayoutCompat flagsLayout;
+	private LinearLayoutCompat extrasLayout;
+	private LinearLayoutCompat activitiesLayout;
 	private TextView activitiesHeader;
 	private Button resendIntentButton;
 	private Button resetIntentButton;
@@ -455,8 +454,8 @@ public class Explode extends AppCompatActivity {
 		}
 	}
 
-	private void addBitmapToLayout(String text, int typeface, int paddingLeft, Bitmap bitmap, LinearLayout linearLayout) {
-		LinearLayout bitmapLayout = new LinearLayout(this);
+	private void addBitmapToLayout(String text, int typeface, int paddingLeft, Bitmap bitmap, LinearLayoutCompat linearLayout) {
+		LinearLayoutCompat bitmapLayout = new LinearLayoutCompat(this);
 		TextView textView = new TextView(this);
 		ParagraphStyle style_para = new LeadingMarginSpan.Standard(0,
 				(int) (STANDARD_INDENT_SIZE_IN_DIP * density));
@@ -467,8 +466,9 @@ public class Explode extends AppCompatActivity {
 		textView.setTextAppearance(this, R.style.TextFlags);
 		textView.setTypeface(null, typeface);
 		textView.setTextIsSelectable(true);
-		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT,
-				LayoutParams.WRAP_CONTENT);
+		LinearLayoutCompat.LayoutParams params = new LinearLayoutCompat.LayoutParams(
+				LinearLayoutCompat.LayoutParams.MATCH_PARENT,
+				LinearLayoutCompat.LayoutParams.WRAP_CONTENT);
 		params.setMargins((int) (paddingLeft * density), 0, 0, 0);
 
 		// At most 144dsp.
@@ -476,18 +476,18 @@ public class Explode extends AppCompatActivity {
 		int height = (int) Math.min(bitmap.getHeight(), maxHeight);
 		int width = bitmap.getWidth() * (height/bitmap.getHeight());
 
-		LinearLayout.LayoutParams bitmapParams = new LayoutParams(width, height);
+		LinearLayoutCompat.LayoutParams bitmapParams = new LinearLayoutCompat.LayoutParams(width, height);
 		ImageView bitmapView = new ImageView(this);
 		bitmapView.setImageBitmap(bitmap);
 		bitmapView.setBackgroundResource(R.drawable.checkerboard_pattern);
-		bitmapLayout.setOrientation(LinearLayout.HORIZONTAL);
+		bitmapLayout.setOrientation(LinearLayoutCompat.HORIZONTAL);
 		bitmapLayout.addView(textView);
 		bitmapLayout.addView(bitmapView, bitmapParams);
 		linearLayout.addView(bitmapLayout, params);
 	}
 
 	private void addTextToLayout(String text, int typeface, int paddingLeft,
-			LinearLayout layout) {
+			LinearLayoutCompat layout) {
 		TextView textView = new TextView(this);
 		ParagraphStyle style_para = new LeadingMarginSpan.Standard(0,
 				(int) (STANDARD_INDENT_SIZE_IN_DIP * density));
@@ -498,13 +498,14 @@ public class Explode extends AppCompatActivity {
 		textView.setTextAppearance(this, R.style.TextFlags);
 		textView.setTypeface(null, typeface);
 		textView.setTextIsSelectable(true);
-		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT,
-				LayoutParams.WRAP_CONTENT);
+		LinearLayoutCompat.LayoutParams params = new LinearLayoutCompat.LayoutParams(
+				LinearLayoutCompat.LayoutParams.MATCH_PARENT,
+				LinearLayoutCompat.LayoutParams.WRAP_CONTENT);
 		params.setMargins((int) (paddingLeft * density), 0, 0, 0);
 		layout.addView(textView, params);
 	}
 
-	private void addTextToLayout(String text, int typeface, LinearLayout layout) {
+	private void addTextToLayout(String text, int typeface, LinearLayoutCompat layout) {
 		addTextToLayout(text, typeface, 0, layout);
 	}
 

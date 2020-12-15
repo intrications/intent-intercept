@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-
-<!-- Base application theme. -->
-    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar" />
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light" />
 
     <style name="TextHeader">
         <item name="android:textSize">16sp</item>
@@ -13,10 +11,10 @@
         <item name="android:layout_marginTop">4dp</item>
         <item name="android:layout_marginBottom">4dp</item>
     </style>
-<!-- duplcated from v14\style.xml -->
+
     <style name="TextFlags">
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@android:color/primary_text_light</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
         <item name="android:paddingLeft">40dp</item>
     </style>
 
