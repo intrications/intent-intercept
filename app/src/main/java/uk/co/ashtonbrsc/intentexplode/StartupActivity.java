@@ -1,20 +1,16 @@
 package uk.co.ashtonbrsc.intentexplode;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 
-public class StartupActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+import uk.co.ashtonbrsc.android.intentintercept.R;
 
+public class StartupActivity extends AppCompatActivity {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
-            startActivity(new Intent(this, Pre15SettingsActivity.class));
-        } else {
-            startActivity(new Intent(this, SettingsActivity.class));
-        }
-        finish();
+        setContentView(R.layout.settings);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new SettingsFragment()).commit();
     }
 }

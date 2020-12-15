@@ -4,12 +4,9 @@
 
 package de.k3b.android.widget;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import de.k3b.io.ListUtils;
 
 /**
@@ -31,7 +29,6 @@ import de.k3b.io.ListUtils;
  * Popup-menu requires at least api 11 (HONEYCOMB)
  * Created by k3b on 26.08.2015.
  */
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class HistoryEditText {
     private static final int NO_ID = -1;
     private final Activity mContext;
@@ -128,7 +125,7 @@ public class HistoryEditText {
         }
 
         private List<String>  include(List<String>  history_, String newValue) {
-            List<String>  history = new ArrayList<String>(history_);
+            List<String>  history = new ArrayList<>(history_);
             if ((newValue != null) && (newValue.length() > 0)) {
                 history.remove(newValue);
                 history.add(0, newValue);
@@ -198,10 +195,11 @@ public class HistoryEditText {
         edit.apply();
     }
 
+    @NonNull
     @Override
     public String toString() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(mContext);
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         for (EditorHandler instance: mEditorHandlers) {
             result.append(instance.toString(sharedPref)).append("\n");
         }

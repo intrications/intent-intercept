@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.preference.Preference;
-import android.preference.PreferenceManager;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceManager;
 
 import androidx.core.app.ShareCompat;
 import uk.co.ashtonbrsc.android.intentintercept.R;

@@ -5,13 +5,11 @@ package uk.co.ashtonbrsc.intentexplode.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.Build;
+import android.util.AttributeSet;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
-
-import android.util.AttributeSet;
 
 public class UnderlinedTextView extends AppCompatTextView {
 
@@ -34,11 +32,7 @@ public class UnderlinedTextView extends AppCompatTextView {
 	}
 
 	private void initColor() {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-			mPaint.setColor(getResources().getColor(android.R.color.holo_blue_light));
-		} else {
-			mPaint.setColor(Color.BLUE & Color.LTGRAY);
-		}
+		mPaint.setColor(getResources().getColor(android.R.color.holo_blue_light));
 	}
 
 	@Override

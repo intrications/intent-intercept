@@ -14,22 +14,17 @@
 
 package uk.co.ashtonbrsc.intentexplode;
 
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceFragment;
 
+import androidx.preference.PreferenceFragmentCompat;
 import uk.co.ashtonbrsc.android.intentintercept.R;
 
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-public class SettingsFragment extends PreferenceFragment {
+public class SettingsFragment extends PreferenceFragmentCompat {
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
-    public void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.enable_disable_settings);
         addPreferencesFromResource(R.xml.settings);
-        SettingsUtil.setupSettings(getActivity(), getPreferenceManager());
+        SettingsUtil.setupSettings(requireActivity(), getPreferenceManager());
     }
 }
