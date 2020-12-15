@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
-
-    <SwitchPreference
-        android:defaultValue="true"
-        android:key="@string/pref_intercept_enabled"
-        android:title="@string/settings_enable_intent_intercept_title" />
-
-</PreferenceScreen>

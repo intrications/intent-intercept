@@ -1,38 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="@string/pref_intercept_enabled"
+        android:title="@string/settings_enable_intent_intercept_title" />
 
     <Preference
         android:key="@string/pref_send_test_intent"
-        android:title="@string/settings_send_test_intent_title"
-        android:summary="@string/settings_send_test_intent_summary">
+        android:summary="@string/settings_send_test_intent_summary"
+        android:title="@string/settings_send_test_intent_title">
         <intent
             android:action="android.intent.action.VIEW"
-            android:data="Test Data" >
-        </intent>
+            android:data="Test Data" />
     </Preference>
+
     <Preference
         android:summary="@string/settings_view_source_code_summary"
-        android:title="@string/settings_view_source_code_title" >
+        android:title="@string/settings_view_source_code_title">
         <intent
             android:action="android.intent.action.VIEW"
-            android:data="https://github.com/k3b/intent-intercept" >
-        </intent>
+            android:data="https://github.com/k3b/intent-intercept" />
     </Preference>
+
     <Preference
         android:summary="@string/settings_report_issue_summary"
-        android:title="@string/settings_report_issue_title" >
+        android:title="@string/settings_report_issue_title">
         <intent
             android:action="android.intent.action.VIEW"
-            android:data="https://github.com/k3b/intent-intercept/issues" >
-        </intent>
+            android:data="https://github.com/k3b/intent-intercept/issues" />
     </Preference>
+
     <Preference
         android:summary="@string/settings_license_summary"
-        android:title="@string/settings_license_title" >
+        android:title="@string/settings_license_title">
         <intent
             android:action="android.intent.action.VIEW"
-            android:data="http://www.apache.org/licenses/LICENSE-2.0.html" >
-        </intent>
+            android:data="http://www.apache.org/licenses/LICENSE-2.0.html" />
     </Preference>
 
 </PreferenceScreen>

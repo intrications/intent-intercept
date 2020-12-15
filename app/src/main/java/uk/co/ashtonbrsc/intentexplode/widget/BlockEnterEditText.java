@@ -15,6 +15,7 @@
 package uk.co.ashtonbrsc.intentexplode.widget;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatEditText;
 
@@ -23,26 +24,26 @@ import android.view.KeyEvent;
 
 public class BlockEnterEditText extends AppCompatEditText {
 
-	public BlockEnterEditText(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-	}
+    public BlockEnterEditText(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+    }
 
-	public BlockEnterEditText(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public BlockEnterEditText(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public BlockEnterEditText(Context context) {
-		super(context);
-	}
+    public BlockEnterEditText(Context context) {
+        super(context);
+    }
 
-	@Override
-	public boolean onKeyDown(int keyCode, @NonNull KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_ENTER) {
-			// Just ignore the [Enter] key
-			return true;
-		}
-		// Handle all other keys in the default way
-		return super.onKeyDown(keyCode, event);
-	}
+    @Override
+    public boolean onKeyDown(int keyCode, @NonNull KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_ENTER) {
+            // Just ignore the [Enter] key
+            return true;
+        }
+        // Handle all other keys in the default way
+        return super.onKeyDown(keyCode, event);
+    }
 
 }

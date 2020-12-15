@@ -73,7 +73,9 @@ public class ListUtils {
         return tags.toArray(new String[0]);
     }
 
-    /** return null if list has no elements */
+    /**
+     * return null if list has no elements
+     */
     public static <T> List<T> emptyAsNull(List<T> list) {
         if ((list != null) && (list.size() > 0)) return list;
         return null;
