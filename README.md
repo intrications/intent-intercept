@@ -23,6 +23,11 @@ Intent Intercept is available here:
 <a href="https://f-droid.org/packages/de.k3b.android.intentintercept/" target="_blank">
 <img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="90"/></a>
 
+## Requirements
+
+* Version 3.0.2 for Android 2.3 - Android 4.1
+* Version 4.0.0 for Android 4.2 and later (including Android-10)
+
 ## License
 Apache License, Version 2.0
 [http://www.apache.org/licenses/LICENSE-2.0.html](http://www.apache.org/licenses/LICENSE-2.0.html)

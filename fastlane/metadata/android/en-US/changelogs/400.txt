@@ -1,0 +1,7 @@
+* Now compatible with Android-4.2 and later (including android-10)
+* Migrated to AndroidX, api-29, gradle-6.7
+* Drop support for Android-2.3 to Android-4.1
+* Fixed #4: Resend ACTION-VIEW with DATA-https-URL does not work on android-7
+* Fixed #11: Security Exception with Resend under Androi-10
+
+Thanks to "Muntashir Al-Islam" for Migrating the code to AndroidX
