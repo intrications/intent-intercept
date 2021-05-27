@@ -7,11 +7,9 @@ android:
   components:
     - tools # to get the new `repository-11.xml`
     - tools # to install Android SDK tools 25.1.x (x = 6 right now)
-    - build-tools-25.0.2
-    - android-23
-    - platform-tools
-    - extra-android-m2repository
-    - extra-android-support
+    - android-29
+    - add-on
+    - extra
 
 sudo: false
 
@@ -21,7 +19,10 @@ before_install:
 # git update-index --chmod=+x gradlew
 # instead of 
 # - chmod +x gradlew
- 
+  - yes | sdkmanager "platforms;android-23"
+  - yes | sdkmanager "platforms;android-28"
+  - yes | sdkmanager "platforms;android-29"
+
 script:
   - jdk_switcher use oraclejdk8
   - ./gradlew assemble test
