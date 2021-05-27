@@ -589,7 +589,10 @@ public class Explode extends AppCompatActivity {
 
     public void onSendIntent(View v) {
         try {
-            startActivityForResult(Intent.createChooser(editableIntent, resendIntentButton.getText()), 1);
+            Intent startIntent = cloneIntent(getUri(editableIntent));
+            startIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            startActivityForResult(Intent.createChooser(startIntent, resendIntentButton.getText()), 1);
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             e.printStackTrace();
