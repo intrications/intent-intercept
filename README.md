@@ -25,8 +25,10 @@ Intent Intercept is available here:
 
 ## Requirements
 
-* Version 3.0.2 for Android 2.3 - Android 4.1
-* Version 4.0.0 for Android 4.2 and later (including Android-10)
+There are two versions available:
+
+* Version 3.0.2 for Android 2.3 - Android 4.1 in branch [android-2.3](https://github.com/k3b/intent-intercept/tree/android-2.3)
+* Version 4.0.0 for Android 4.2 and later (including Android-10) in branch [master](https://github.com/k3b/intent-intercept/tree/master)
 
 ## License
 Apache License, Version 2.0
